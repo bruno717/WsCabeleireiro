@@ -33,7 +33,7 @@ public class LoginDAO {
 			stmt.close();
 			con.close();
 		} catch (Exception e) {
-			System.out.println("ERRO:(listarFuncao) " + e.toString());
+			e.printStackTrace();
 		}
 		return dto;
 	}

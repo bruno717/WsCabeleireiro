@@ -1,6 +1,18 @@
 package br.com.salaodebeleza.dto;
 
 public class UsuarioDTO {
+	
+	public UsuarioDTO(){
+		super();
+	}
+	
+	public UsuarioDTO(String nome, Integer telefone, String email, String senha){
+		super();
+		this.nome = nome;
+		this. telefone = telefone;
+		this.email = email;
+		this.senha = senha;
+	}
 
 	private Integer id;
 	private Integer idTipoUsuario;

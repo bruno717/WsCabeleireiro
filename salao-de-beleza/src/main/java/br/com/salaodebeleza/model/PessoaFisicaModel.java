@@ -2,14 +2,14 @@ package br.com.salaodebeleza.model;
 
 public class PessoaFisicaModel {
 
-	private Integer cpf;
-	private PessoaModel pessoa;
+	private Long cpf;
+	private PessoaModel pessoa = new PessoaModel();
 
-	public Integer getCpf() {
+	public Long getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(Integer cpf) {
+	public void setCpf(Long cpf) {
 		this.cpf = cpf;
 	}
 
