@@ -9,6 +9,7 @@ import br.com.salaodebeleza.dto.ClienteDTO;
 import br.com.salaodebeleza.dto.UsuarioDTO;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusUsuario;
+import br.com.salaodebeleza.util.TipoUsuario;
 
 public class ClienteDAO {
 
@@ -23,7 +24,7 @@ public class ClienteDAO {
 			PreparedStatement ps = (PreparedStatement) con
 					.prepareStatement(sql);
 
-			ps.setInt(1, StatusUsuario.CLIENTE);
+			ps.setInt(1, TipoUsuario.CLIENTE);
 			ps.setString(2, cliente.getNome());
 			ps.setInt(3, cliente.getTelefone());
 			ps.setString(4, cliente.getEmail());
@@ -37,7 +38,7 @@ public class ClienteDAO {
 			ResultSet rs = stmt.executeQuery(sql);
 
 			if (rs.next()) {
-				if (rs.getString("resp").equals("5")) {
+				if (rs.getString("resp").equals(StatusUsuario.USUARIO_CADASTRADO_SUCESSO.toString())) {
 					dto = new LoginDAO().loginWeb(cliente.getEmail(),
 							cliente.getSenha());
 				}

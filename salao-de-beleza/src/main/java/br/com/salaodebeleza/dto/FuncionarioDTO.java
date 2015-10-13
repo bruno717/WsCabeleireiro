@@ -1,13 +1,19 @@
 package br.com.salaodebeleza.dto;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FuncionarioDTO {
 
+	private Integer id;
 	private String nome;
 	private Integer telefone;
 	private String email;
 	private String senha;
 	private Integer telefone2;
-	private String nascimento;
+	private Date dtNascimento;
 	private Long cpf;
 	private String sexo;
 	private Integer cep;
@@ -17,6 +23,15 @@ public class FuncionarioDTO {
 	private String cidade;
 	private String estado;
 	private String pais;
+	private Integer tipoUsuario;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -58,12 +73,25 @@ public class FuncionarioDTO {
 		this.telefone2 = telefone2;
 	}
 
-	public String getNascimento() {
-		return nascimento;
+	public Date getDtNascimento() {
+		return dtNascimento;
 	}
 
-	public void setNascimento(String nascimento) {
-		this.nascimento = nascimento;
+	public void setDtNascimento(Date dtNascimento) {
+		this.dtNascimento = dtNascimento;
+	}
+	
+	public void setDtNascimento(String dtNascimento) {
+		
+		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
+		Date date = null;
+		try {
+			date = (Date)formatter.parse(dtNascimento);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		this.dtNascimento = date;
 	}
 
 	public Long getCpf() {
@@ -136,6 +164,14 @@ public class FuncionarioDTO {
 
 	public void setPais(String pais) {
 		this.pais = pais;
+	}
+
+	public Integer getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(Integer tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 }

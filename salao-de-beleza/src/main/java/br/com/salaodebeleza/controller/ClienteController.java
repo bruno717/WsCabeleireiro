@@ -22,7 +22,7 @@ public class ClienteController {
 		UsuarioDTO usuario = new ClienteDAO().criarCliente(dto);
 
 		if (usuario == null) {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
 
 		return usuario;

@@ -54,13 +54,14 @@ public class FuncionarioModel {
 	public FuncionarioModel toFuncionario(FuncionarioDTO dto) {
 
 		FuncionarioModel funcionario = new FuncionarioModel();
+		funcionario.setId(dto.getId());
 		funcionario.pessoaFisica.getPessoa().setNome(dto.getNome());
 		funcionario.pessoaFisica.getPessoa().setTelefone(dto.getTelefone());
 		funcionario.pessoaFisica.getPessoa().setEmail(dto.getEmail());
 		funcionario.pessoaFisica.getPessoa().setSenha(dto.getSenha());
 		funcionario.pessoaFisica.getPessoa().setTelefone2(dto.getTelefone2());
 		funcionario.pessoaFisica.getPessoa().setDtNascimento(
-				dto.getNascimento());
+				dto.getDtNascimento());
 		funcionario.pessoaFisica.setCpf(dto.getCpf());
 		funcionario.pessoaFisica.getPessoa().setSexo(dto.getSexo());
 		funcionario.pessoaFisica.getPessoa().setCep(dto.getCep());
