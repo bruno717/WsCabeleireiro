@@ -139,7 +139,7 @@ public class ClienteDAO {
 		return dto;
 	}
 
-	public List<ClienteDTO> getListaClientes() {
+	public List<ClienteDTO> buscarClientes() {
 		String sql;
 		List<ClienteDTO> dtos = new ArrayList<ClienteDTO>();
 		try {

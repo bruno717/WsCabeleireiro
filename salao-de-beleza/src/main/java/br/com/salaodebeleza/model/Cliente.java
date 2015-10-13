@@ -1,9 +1,9 @@
 package br.com.salaodebeleza.model;
 
-public class ClienteModel {
+public class Cliente {
 
 	private Integer id;
-	private PessoaFisicaModel pessoaFisica;
+	private PessoaFisica pessoaFisica;
 
 	public Integer getId() {
 		return id;
@@ -13,11 +13,11 @@ public class ClienteModel {
 		this.id = id;
 	}
 
-	public PessoaFisicaModel getPessoaFisica() {
+	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
 	}
 
-	public void setPessoaFisica(PessoaFisicaModel pessoaFisica) {
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
 		this.pessoaFisica = pessoaFisica;
 	}
 

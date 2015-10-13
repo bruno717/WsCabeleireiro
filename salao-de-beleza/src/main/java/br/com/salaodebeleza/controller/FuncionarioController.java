@@ -42,7 +42,7 @@ public class FuncionarioController {
 	@RequestMapping(method = RequestMethod.GET)
 	public FuncionarioDTO getFuncionario(@RequestParam String email) {
 		
-		FuncionarioDTO funcionario = new FuncionarioDAO().getFuncionario(email);
+		FuncionarioDTO funcionario = new FuncionarioDAO().buscarFuncionario(email);
 
 		return funcionario;
 	}
@@ -50,7 +50,7 @@ public class FuncionarioController {
 	@RequestMapping(value = "lista", method = RequestMethod.GET)
 	public List<FuncionarioDTO> getListaFuncionarios() {
 		
-		List<FuncionarioDTO> funcionarios = new FuncionarioDAO().getListaFuncionarios();
+		List<FuncionarioDTO> funcionarios = new FuncionarioDAO().buscarFuncionarios();
 
 		return funcionarios;
 	}

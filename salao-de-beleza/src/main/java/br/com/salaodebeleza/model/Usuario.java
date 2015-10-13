@@ -1,10 +1,10 @@
 package br.com.salaodebeleza.model;
 
-public class UsuarioModel {
+public class Usuario {
 
 	private Integer id;
 	private Float salario;
-	private PessoaFisicaModel pessoaFisica;
+	private PessoaFisica pessoaFisica;
 
 	public Integer getId() {
 		return id;
@@ -22,11 +22,11 @@ public class UsuarioModel {
 		this.salario = salario;
 	}
 
-	public PessoaFisicaModel getPessoaFisica() {
+	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
 	}
 
-	public void setPessoaFisica(PessoaFisicaModel pessoaFisica) {
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
 		this.pessoaFisica = pessoaFisica;
 	}
 

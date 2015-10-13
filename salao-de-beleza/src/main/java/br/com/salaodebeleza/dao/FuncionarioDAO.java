@@ -15,7 +15,7 @@ import br.com.salaodebeleza.util.TipoUsuario;
 
 public class FuncionarioDAO {
 
-	// Criar funcionário
+	// Criar funcionï¿½rio
 	public Boolean criarFuncionario(FuncionarioDTO funcionario) {
 
 		Boolean resp = false;
@@ -98,7 +98,7 @@ public class FuncionarioDAO {
 			ps.close();
 			con.close();
 
-			dto = getFuncionario(funcionario.getEmail());
+			dto = buscarFuncionario(funcionario.getEmail());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -106,7 +106,7 @@ public class FuncionarioDAO {
 		return dto;
 	}
 
-	public FuncionarioDTO getFuncionario(String email) {
+	public FuncionarioDTO buscarFuncionario(String email) {
 
 		String sql;
 		FuncionarioDTO dto = null;
@@ -149,7 +149,7 @@ public class FuncionarioDAO {
 		return dto;
 	}
 
-	public List<FuncionarioDTO> getListaFuncionarios() {
+	public List<FuncionarioDTO> buscarFuncionarios() {
 
 		String sql;
 		List<FuncionarioDTO> dtos = new ArrayList<FuncionarioDTO>();

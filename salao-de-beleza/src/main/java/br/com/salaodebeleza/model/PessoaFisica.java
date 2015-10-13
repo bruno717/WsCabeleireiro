@@ -1,9 +1,9 @@
 package br.com.salaodebeleza.model;
 
-public class PessoaFisicaModel {
+public class PessoaFisica {
 
 	private Long cpf;
-	private PessoaModel pessoa = new PessoaModel();
+	private Pessoa pessoa = new Pessoa();
 
 	public Long getCpf() {
 		return cpf;
@@ -13,11 +13,11 @@ public class PessoaFisicaModel {
 		this.cpf = cpf;
 	}
 
-	public PessoaModel getPessoa() {
+	public Pessoa getPessoa() {
 		return pessoa;
 	}
 
-	public void setPessoa(PessoaModel pessoa) {
+	public void setPessoa(Pessoa pessoa) {
 		this.pessoa = pessoa;
 	}
 

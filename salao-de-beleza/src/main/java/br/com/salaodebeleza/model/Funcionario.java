@@ -2,13 +2,13 @@ package br.com.salaodebeleza.model;
 
 import br.com.salaodebeleza.dto.FuncionarioDTO;
 
-public class FuncionarioModel {
+public class Funcionario {
 
-	public FuncionarioModel() {
+	public Funcionario() {
 		super();
 	}
 
-	public FuncionarioModel(String nome, Integer telefone, String email,
+	public Funcionario(String nome, Integer telefone, String email,
 			String senha, Integer telefone2, String nascimento, Long cpf,
 			String sexo, Integer cep, String logradouro, String numero,
 			String bairro, String cidade, String estado, String pais) {
@@ -33,7 +33,7 @@ public class FuncionarioModel {
 	}
 
 	private Integer id;
-	private PessoaFisicaModel pessoaFisica = new PessoaFisicaModel();
+	private PessoaFisica pessoaFisica = new PessoaFisica();
 
 	public Integer getId() {
 		return id;
@@ -43,17 +43,17 @@ public class FuncionarioModel {
 		this.id = id;
 	}
 
-	public PessoaFisicaModel getPessoaFisica() {
+	public PessoaFisica getPessoaFisica() {
 		return pessoaFisica;
 	}
 
-	public void setPessoaFisica(PessoaFisicaModel pessoaFisica) {
+	public void setPessoaFisica(PessoaFisica pessoaFisica) {
 		this.pessoaFisica = pessoaFisica;
 	}
 
-	public FuncionarioModel toFuncionario(FuncionarioDTO dto) {
+	public Funcionario toFuncionario(FuncionarioDTO dto) {
 
-		FuncionarioModel funcionario = new FuncionarioModel();
+		Funcionario funcionario = new Funcionario();
 		funcionario.setId(dto.getId());
 		funcionario.pessoaFisica.getPessoa().setNome(dto.getNome());
 		funcionario.pessoaFisica.getPessoa().setTelefone(dto.getTelefone());
