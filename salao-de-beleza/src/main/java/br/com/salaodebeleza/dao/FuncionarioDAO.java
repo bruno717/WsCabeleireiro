@@ -56,7 +56,7 @@ public class FuncionarioDAO {
 
 			if (rs.next()) {
 				resp = rs.getString("resp").equals(
-						StatusUsuario.USUARIO_CADASTRADO_SUCESSO.toString());
+						StatusUsuario.USUARIO_CADASTRADO.toString());
 			}
 			ps.close();
 			con.close();
@@ -155,7 +155,7 @@ public class FuncionarioDAO {
 		List<FuncionarioDTO> dtos = new ArrayList<FuncionarioDTO>();
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_FUNCIONARIOS;
+			sql = MyQuery.SELECT_USUARIOS;
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setInt(1, TipoUsuario.FUNCIONARIO);
