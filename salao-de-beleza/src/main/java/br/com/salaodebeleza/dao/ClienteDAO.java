@@ -41,7 +41,8 @@ public class ClienteDAO {
 			if (rs.next()) {
 				if (rs.getString("resp").equals(
 						StatusUsuario.USUARIO_CADASTRADO.toString())) {
-					dto = new ClienteDAO().getClienteSimples(cliente.getEmail());
+					dto = new ClienteDAO().getClienteSimplesPorEmail(cliente
+							.getEmail());
 				}
 			}
 			ps.close();
@@ -61,28 +62,31 @@ public class ClienteDAO {
 			sql = MyQuery.UPDATE_CLIENTE;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, TipoUsuario.CLIENTE);
-			ps.setString(2, dto.getNome());
-			ps.setInt(3, dto.getTelefone());
-			ps.setString(4, dto.getEmail());
-			ps.setString(5, dto.getSenha());
-			ps.setInt(6, StatusUsuario.USUARIO_ATIVO);
-			ps.setInt(7, TipoUsuario.ADM);
-			ps.setInt(8, dto.getTelefone2());
-			ps.setDate(9, new Date(dto.getDtNascimento().getTime()));
-			ps.setLong(10, dto.getCpf());
-			ps.setString(11, dto.getSexo());
-			ps.setLong(12, 0L);
-			ps.setInt(13, 0);
-			ps.setInt(14, 0);
-			ps.setInt(15, 0);
-			ps.setInt(16, dto.getCep());
-			ps.setString(17, dto.getLogradouro());
-			ps.setString(18, dto.getNumero());
-			ps.setString(19, dto.getBairro());
-			ps.setString(20, dto.getCidade());
-			ps.setString(21, dto.getEstado());
-			ps.setString(22, dto.getPais());
+			ps.setInt(1, dto.getId());
+			ps.setInt(2, 0);
+			ps.setInt(3, 0);
+			ps.setInt(4, TipoUsuario.CLIENTE);
+			ps.setString(5, dto.getNome());
+			ps.setInt(6, dto.getTelefone());
+			ps.setString(7, dto.getEmail());
+			ps.setString(8, dto.getSenha());
+			ps.setInt(9, StatusUsuario.USUARIO_ATIVO);
+			ps.setInt(10, TipoUsuario.ADM);
+			ps.setInt(11, dto.getTelefone2());
+			ps.setDate(12, new Date(dto.getDtNascimento().getTime()));
+			ps.setLong(13, dto.getCpf());
+			ps.setString(14, dto.getSexo());
+			ps.setLong(15, 0L);
+			ps.setInt(16, 0);
+			ps.setInt(17, 0);
+			ps.setInt(18, 0);
+			ps.setInt(19, dto.getCep());
+			ps.setString(20, dto.getLogradouro());
+			ps.setString(21, dto.getNumero());
+			ps.setString(22, dto.getBairro());
+			ps.setString(23, dto.getCidade());
+			ps.setString(24, dto.getEstado());
+			ps.setString(25, dto.getPais());
 
 			ps.execute();
 			ps.close();
@@ -127,6 +131,9 @@ public class ClienteDAO {
 				dto.setCidade(rs.getString("ds_cidade"));
 				dto.setEstado(rs.getString("ds_estado"));
 				dto.setPais(rs.getString("ds_pais"));
+			} else {
+				dto = new ClienteDTO();
+				dto = getClienteSimplesPorEmail(email);
 			}
 
 			rs.close();
@@ -178,13 +185,14 @@ public class ClienteDAO {
 			rs.close();
 			ps.close();
 			con.close();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return dtos;
 	}
-	
-	private ClienteDTO getClienteSimples(String email) {
+
+	private ClienteDTO getClienteSimplesPorEmail(String email) {
 
 		String sql;
 		ClienteDTO dto = null;
@@ -213,6 +221,6 @@ public class ClienteDAO {
 			e.printStackTrace();
 		}
 		return dto;
-	} 
+	}
 
 }

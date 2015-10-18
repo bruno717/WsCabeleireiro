@@ -40,22 +40,22 @@ public class TipoProdutoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public TipoProduto buscarTipoProduto(@RequestParam Integer id,
-			HttpServletResponse response) {
+	public TipoProduto buscarTipoProduto(@RequestParam Integer id/*,
+			HttpServletResponse response*/) {
 
 		TipoProduto tipoProduto = new TipoProdutoDAO().buscarTipoProduto(id);
-		response.setStatus(tipoProduto != null ? HttpServletResponse.SC_OK
-				: HttpServletResponse.SC_CONFLICT);
+		/*response.setStatus(tipoProduto != null ? HttpServletResponse.SC_OK
+				: HttpServletResponse.SC_CONFLICT);*/
 
 		return tipoProduto;
 	}
 
 	@RequestMapping(value = "lista", method = RequestMethod.GET)
-	public List<TipoProduto> buscarTipoProdutos(HttpServletResponse response) {
+	public List<TipoProduto> buscarTipoProdutos(/*HttpServletResponse response*/) {
 
 		List<TipoProduto> lista = new TipoProdutoDAO().buscarTipoProdutos();
-		response.setStatus(lista != null ? HttpServletResponse.SC_OK
-				: HttpServletResponse.SC_CONFLICT);
+		/*response.setStatus(lista != null ? HttpServletResponse.SC_OK
+				: HttpServletResponse.SC_CONFLICT);*/
 
 		return lista;
 	}
