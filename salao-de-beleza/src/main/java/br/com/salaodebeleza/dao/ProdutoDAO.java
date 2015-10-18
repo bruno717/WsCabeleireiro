@@ -26,7 +26,7 @@ public class ProdutoDAO {
 			ps.setInt(1, produto.getTipoProduto());
 			ps.setString(2, produto.getDescricao());
 			ps.setString(3, produto.getFabricante());
-			ps.setString(4, produto.getPreco());
+			ps.setFloat(4, produto.getPreco());
 			ps.setInt(5, StatusUsuario.USUARIO_ATIVO);
 			ps.setDate(6, new java.sql.Date(new Date().getTime()));
 			ps.setInt(7, TipoUsuario.ADM);
@@ -53,7 +53,7 @@ public class ProdutoDAO {
 			ps.setInt(1, produto.getTipoProduto());
 			ps.setString(2, produto.getDescricao());
 			ps.setString(3, produto.getFabricante());
-			ps.setString(4, produto.getPreco());
+			ps.setFloat(4, produto.getPreco());
 			ps.setInt(5, produto.getId());
 			ps.execute();
 
@@ -84,7 +84,7 @@ public class ProdutoDAO {
 				produto.setTipoProduto(rs.getInt("id_tipo_produto"));
 				produto.setDescricao(rs.getString("ds_produto"));
 				produto.setFabricante(rs.getString("ds_fabricante"));
-				produto.setPreco(rs.getString("vl_preco"));
+				produto.setPreco(rs.getFloat("vl_preco"));
 			}
 
 			rs.close();
@@ -106,13 +106,13 @@ public class ProdutoDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Produto produto = new Produto();
 				produto.setId(rs.getInt("id_produto"));
 				produto.setTipoProduto(rs.getInt("id_tipo_produto"));
 				produto.setDescricao(rs.getString("ds_produto"));
 				produto.setFabricante(rs.getString("ds_fabricante"));
-				produto.setPreco(rs.getString("vl_preco"));
+				produto.setPreco(rs.getFloat("vl_preco"));
 
 				lista.add(produto);
 			}
@@ -125,6 +125,36 @@ public class ProdutoDAO {
 		}
 
 		return lista;
+	}
+	
+	public Produto buscarUltimoProduto() {
+
+		String sql;
+		List<Produto> lista = new ArrayList<Produto>();
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.SELECT_PRODUTOS;
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Produto produto = new Produto();
+				produto.setId(rs.getInt("id_produto"));
+				produto.setTipoProduto(rs.getInt("id_tipo_produto"));
+				produto.setDescricao(rs.getString("ds_produto"));
+				produto.setFabricante(rs.getString("ds_fabricante"));
+				produto.setPreco(rs.getFloat("vl_preco"));
+
+				lista.add(produto);
+			}
+
+			rs.close();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lista.get(lista.size() - 1);
 	}
 
 }

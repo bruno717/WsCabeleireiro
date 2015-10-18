@@ -22,7 +22,7 @@ public class FuncionarioController {
 
 		Boolean resp = new FuncionarioDAO().criarFuncionario(dto);
 		if (!resp) {
-			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			response.setStatus(HttpServletResponse.SC_CONFLICT);
 		}
 
 		return resp;

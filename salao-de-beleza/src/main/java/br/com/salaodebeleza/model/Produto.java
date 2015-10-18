@@ -7,7 +7,7 @@ public class Produto {
 	private String nome;
 	private String fabricante;
 	private String descricao;
-	private String preco;
+	private Float preco;
 
 	public Integer getId() {
 		return id;
@@ -49,11 +49,11 @@ public class Produto {
 		this.descricao = descricao;
 	}
 
-	public String getPreco() {
+	public Float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(String preco) {
+	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
 }

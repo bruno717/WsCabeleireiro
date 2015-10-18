@@ -31,4 +31,11 @@ public class MyQuery {
 	public static final String UPDATE_PRODUTO = "UPDATE tb_produtos SET id_tipo_produto=?, ds_produto=?, ds_fabricante=?, vl_preco=? WHERE id_produto = ?";
 	public static final String SELECT_PRODUTO = "SELECT * FROM tb_produtos WHERE id_produto = ?";
 	public static final String SELECT_PRODUTOS = "SELECT * FROM tb_produtos ORDER BY ds_produto";
+	
+	// Estoque
+	public static final String INSERT_PRODUTO_ESTOQUE = "INSERT INTO tb_estoque (id_produto, qt_produto) VALUES (?, ?)";
+	public static final String UPDATE_PRODUTO_ESTOQUE = "UPDATE tb_estoque SET qt_produto = ? WHERE id_estoque = ?";
+	public static final String DELETE_PRODUTO_ESTOQUE = "DELETE FROM tb_estoque WHERE id_estoque = ?";
+	public static final String SELECT_PRODUTO_ESTOQUE = "SELECT * FROM tb_estoque WHERE id_estoque = ?";
+	public static final String SELECT_PRODUTOS_ESTOQUE = "SELECT * FROM tb_estoque";
 }

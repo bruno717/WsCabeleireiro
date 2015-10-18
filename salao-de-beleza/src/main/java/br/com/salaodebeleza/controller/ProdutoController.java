@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.salaodebeleza.dao.ProdutoDAO;
 import br.com.salaodebeleza.model.Produto;
+import br.com.salaodebeleza.service.EstoqueService;
 
 @RestController
 @RequestMapping(value = "produto")
@@ -21,7 +22,7 @@ public class ProdutoController {
 	public Boolean criarProduto(@ModelAttribute Produto produto,
 			HttpServletResponse response) {
 
-		Boolean resp = new ProdutoDAO().criarProduto(produto);
+		Boolean resp = new EstoqueService().insereProdutoEstoqueService(produto);
 		response.setStatus(resp == true ? HttpServletResponse.SC_OK
 				: HttpServletResponse.SC_CONFLICT);
 
@@ -40,22 +41,17 @@ public class ProdutoController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Produto buscarProduto(@RequestParam Integer id/*,
-			HttpServletResponse response*/) {
+	public Produto buscarProduto(@RequestParam Integer id) {
 
 		Produto produto = new ProdutoDAO().buscarProduto(id);
-		/*response.setStatus(produto != null ? HttpServletResponse.SC_OK
-				: HttpServletResponse.SC_CONFLICT);*/
 
 		return produto;
 	}
 
 	@RequestMapping(value = "lista", method = RequestMethod.GET)
-	public List<Produto> buscarProdutos(/*HttpServletResponse response*/) {
+	public List<Produto> buscarProdutos() {
 
 		List<Produto> lista = new ProdutoDAO().buscarProdutos();
-		/*response.setStatus(lista != null ? HttpServletResponse.SC_OK
-				: HttpServletResponse.SC_CONFLICT);*/
 
 		return lista;
 	}
