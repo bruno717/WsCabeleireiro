@@ -40,8 +40,8 @@ public class MyQuery {
 	public static final String SELECT_PRODUTOS_ESTOQUE = "SELECT * FROM tb_estoque";
 	
 	//Compra
-	public static final String INSERT_COMPRA = "INSERT INTO tb_compras (id_usuario, id_tipo_pagamento, id_usuario_cadastro) VALUES (?, ?, ?)";
-	public static final String INSERT_PRODUTO_COMPRADO = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
+	public static final String INSERT_COMPRA = "INSERT INTO tb_compras (id_usuario, id_tipo_pagamento, id_usuario_cadastro, cd_status) VALUES (?, ?, ?, ?)";
+	public static final String INSERT_PRODUTO_COMPRADO = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, cd_status, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?)";
 	
 	public static final String SELECT_COMPRAS = "SELECT * FROM tb_compras";
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.com.salaodebeleza.model.Compra;
 import br.com.salaodebeleza.util.MyQuery;
+import br.com.salaodebeleza.util.StatusCompraPedido;
 import br.com.salaodebeleza.util.TipoUsuario;
 
 public class CompraDAO {
@@ -24,15 +25,16 @@ public class CompraDAO {
 			ps.setInt(1, compra.getIdFuncionario());
 			ps.setInt(2, compra.getTipoPagamento());
 			ps.setInt(3, TipoUsuario.FUNCIONARIO);
+			ps.setInt(4, StatusCompraPedido.EM_ABERTO);
 			ps.execute();
 
 			ps.close();
 			con.close();
 			resp = true;
-			
+
 			Compra compraCadastrada = buscarUltimaCompra();
-			
-			if(compraCadastrada != null){
+
+			if (compraCadastrada != null) {
 				resp = inserirPrudutoComprado(compraCadastrada);
 			}
 
@@ -57,7 +59,8 @@ public class CompraDAO {
 
 				ps.setInt(1, compra.getId());
 				ps.setInt(2, compra.getProdutos().get(i).getId());
-				ps.setInt(3, 0);
+				ps.setInt(3, StatusCompraPedido.EM_ABERTO);
+				ps.setInt(4, 0);
 				ps.execute();
 
 				ps.close();

@@ -10,7 +10,7 @@ public class Compra {
 	private Integer tipoPagamento;
 	private List<Produto> produtos;
 	private Float valor;
-	private String Status;
+	private Integer Status;
 
 	public Integer getId() {
 		return id;
@@ -52,11 +52,11 @@ public class Compra {
 		this.valor = valor;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return Status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		Status = status;
 	}
 
