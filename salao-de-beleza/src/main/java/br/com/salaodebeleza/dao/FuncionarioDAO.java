@@ -27,20 +27,20 @@ public class FuncionarioDAO {
 
 			ps.setInt(1, TipoUsuario.FUNCIONARIO);
 			ps.setString(2, funcionario.getNome());
-			ps.setInt(3, funcionario.getTelefone());
+			ps.setInt(3, funcionario.getTelefone() == null ? 0 : funcionario.getTelefone());
 			ps.setString(4, funcionario.getEmail());
 			ps.setString(5, funcionario.getSenha());
 			ps.setInt(6, StatusUsuario.USUARIO_ATIVO);
 			ps.setInt(7, TipoUsuario.ADM);
-			ps.setInt(8, funcionario.getTelefone2());
+			ps.setInt(8, funcionario.getTelefone2() == null ? 0 : funcionario.getTelefone2());
 			ps.setDate(9, new Date(funcionario.getDtNascimento().getTime()));
-			ps.setLong(10, funcionario.getCpf());
+			ps.setLong(10, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(11, funcionario.getSexo());
 			ps.setLong(12, 0L);
 			ps.setInt(13, 0);
 			ps.setInt(14, 0);
 			ps.setInt(15, 0);
-			ps.setInt(16, funcionario.getCep());
+			ps.setInt(16, funcionario.getCep() == null ? 0 : funcionario.getCep());
 			ps.setString(17, funcionario.getLogradouro());
 			ps.setString(18, funcionario.getNumero());
 			ps.setString(19, funcionario.getBairro());
@@ -78,21 +78,21 @@ public class FuncionarioDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1, funcionario.getNome());
-			ps.setInt(2, funcionario.getTelefone());
+			ps.setInt(2, funcionario.getTelefone() == null ? 0 : funcionario.getTelefone());
 			ps.setString(3, funcionario.getEmail());
 			ps.setString(4, funcionario.getSenha());
-			ps.setInt(5, funcionario.getTelefone2());
+			ps.setInt(5, funcionario.getTelefone2() == null ? 0 : funcionario.getTelefone2());
 			ps.setDate(6, new Date(funcionario.getDtNascimento().getTime()));
-			ps.setLong(7, funcionario.getCpf());
+			ps.setLong(7, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(8, funcionario.getSexo());
-			ps.setInt(9, funcionario.getCep());
+			ps.setInt(9, funcionario.getCep() == null ? 0 : funcionario.getCep());
 			ps.setString(10, funcionario.getLogradouro());
 			ps.setString(11, funcionario.getNumero());
 			ps.setString(12, funcionario.getBairro());
 			ps.setString(13, funcionario.getCidade());
 			ps.setString(14, funcionario.getEstado());
 			ps.setString(15, funcionario.getPais());
-			ps.setInt(16, funcionario.getId());
+			ps.setInt(16, funcionario.getId() == null ? 0 : funcionario.getId());
 			ps.execute();
 
 			ps.close();

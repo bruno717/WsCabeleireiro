@@ -26,7 +26,7 @@ public class ProdutoDAO {
 			ps.setInt(1, produto.getTipoProduto());
 			ps.setString(2, produto.getDescricao());
 			ps.setString(3, produto.getFabricante());
-			ps.setFloat(4, produto.getPreco());
+			ps.setFloat(4, produto.getPreco() == null ? 0 : produto.getPreco());
 			ps.setInt(5, StatusUsuario.USUARIO_ATIVO);
 			ps.setDate(6, new java.sql.Date(new Date().getTime()));
 			ps.setInt(7, TipoUsuario.ADM);
@@ -53,7 +53,7 @@ public class ProdutoDAO {
 			ps.setInt(1, produto.getTipoProduto());
 			ps.setString(2, produto.getDescricao());
 			ps.setString(3, produto.getFabricante());
-			ps.setFloat(4, produto.getPreco());
+			ps.setFloat(4, produto.getPreco() == null ? 0 : produto.getPreco());
 			ps.setInt(5, produto.getId());
 			ps.execute();
 

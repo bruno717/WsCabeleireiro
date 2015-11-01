@@ -27,7 +27,7 @@ public class ClienteDAO {
 
 			ps.setInt(1, TipoUsuario.CLIENTE);
 			ps.setString(2, cliente.getNome());
-			ps.setInt(3, cliente.getTelefone());
+			ps.setInt(3, cliente.getTelefone() == null ? 0 : cliente.getTelefone());
 			ps.setString(4, cliente.getEmail());
 			ps.setString(5, cliente.getSenha());
 			ps.setInt(6, StatusUsuario.USUARIO_ATIVO);
@@ -67,20 +67,20 @@ public class ClienteDAO {
 			ps.setInt(3, 0);
 			ps.setInt(4, TipoUsuario.CLIENTE);
 			ps.setString(5, dto.getNome());
-			ps.setInt(6, dto.getTelefone());
+			ps.setInt(6, dto.getTelefone() == null ? 0 : dto.getTelefone());
 			ps.setString(7, dto.getEmail());
 			ps.setString(8, dto.getSenha());
 			ps.setInt(9, StatusUsuario.USUARIO_ATIVO);
 			ps.setInt(10, TipoUsuario.ADM);
 			ps.setInt(11, dto.getTelefone2());
 			ps.setDate(12, new Date(dto.getDtNascimento().getTime()));
-			ps.setLong(13, dto.getCpf());
+			ps.setLong(13, dto.getCpf() == null ? 0 : dto.getCpf());
 			ps.setString(14, dto.getSexo());
 			ps.setLong(15, 0L);
 			ps.setInt(16, 0);
 			ps.setInt(17, 0);
 			ps.setInt(18, 0);
-			ps.setInt(19, dto.getCep());
+			ps.setInt(19, dto.getCep() == null ? 0 : dto.getCep());
 			ps.setString(20, dto.getLogradouro());
 			ps.setString(21, dto.getNumero());
 			ps.setString(22, dto.getBairro());

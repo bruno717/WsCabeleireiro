@@ -2,7 +2,7 @@ package br.com.salaodebeleza.model;
 
 import java.util.Date;
 
-public class ContaPagarReceber {
+public class ContaReceber {
 
 	private Integer id;
 	private Integer idTipoConta;

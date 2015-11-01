@@ -22,8 +22,8 @@ public class CompraDAO {
 			sql = MyQuery.INSERT_COMPRA;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, compra.getIdFuncionario());
-			ps.setInt(2, compra.getTipoPagamento());
+			ps.setInt(1, compra.getIdFuncionario() == null ? 0 : compra.getIdFuncionario());
+			ps.setInt(2, compra.getTipoPagamento() == null ? 0 : compra.getTipoPagamento());
 			ps.setInt(3, TipoUsuario.FUNCIONARIO);
 			ps.setInt(4, StatusCompraPedido.EM_ABERTO);
 			ps.execute();
@@ -38,6 +38,31 @@ public class CompraDAO {
 				resp = inserirPrudutoComprado(compraCadastrada);
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
+
+	public Boolean atualizarStatusCompra(Integer id) {
+
+		String sql;
+		Boolean resp = false;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.UPDATE_STATUS_COMPRA;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, StatusCompraPedido.FINALIZADO);
+			ps.setInt(2, id);
+			ps.execute();
+
+			ps.close();
+			con.close();
+
+			resp = atualizarPrudutoComprado(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp = false;
@@ -67,6 +92,33 @@ public class CompraDAO {
 				con.close();
 
 			}
+			resp = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
+
+	private Boolean atualizarPrudutoComprado(Integer idCompra) {
+
+		String sql;
+		Boolean resp = false;
+		try {
+
+			Connection con = Connect.getConexao();
+			sql = MyQuery.UPDATE_STATUS_PRODUTOS_COMPRADOS;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, StatusCompraPedido.FINALIZADO);
+			ps.setInt(2, idCompra);
+			ps.execute();
+
+			ps.close();
+			con.close();
+
 			resp = true;
 
 		} catch (Exception e) {

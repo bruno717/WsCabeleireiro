@@ -5,6 +5,7 @@ import java.util.Date;
 public class ContaPagar {
 
 	private Integer id;
+	private Integer idPedido;
 	private Integer idTipoConta;
 	private Integer parcelas;
 	private Date dataVencimento;
@@ -13,6 +14,7 @@ public class ContaPagar {
 	private Double desconto;
 	private Double juros;
 	private Double valorConta;
+	private Double valorPago;
 
 	public Integer getIdTipoConta() {
 		return idTipoConta;
@@ -85,5 +87,23 @@ public class ContaPagar {
 	public void setValorConta(Double valorConta) {
 		this.valorConta = valorConta;
 	}
+
+	public Integer getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Integer idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public Double getValorPago() {
+		return valorPago;
+	}
+
+	public void setValorPago(Double valorPago) {
+		this.valorPago = valorPago;
+	}
+	
+	
 
 }
