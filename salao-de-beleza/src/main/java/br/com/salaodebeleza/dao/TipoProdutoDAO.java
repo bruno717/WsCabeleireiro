@@ -97,7 +97,7 @@ public class TipoProdutoDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				TipoProduto tipoProduto = new TipoProduto();
 
 				tipoProduto.setId(rs.getInt("id_tipo_produto"));

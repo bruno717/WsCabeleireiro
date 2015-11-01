@@ -54,7 +54,7 @@ public class CompraDAO {
 
 			for (int i = 0; i < compra.getProdutos().size(); i++) {
 				Connection con = Connect.getConexao();
-				sql = MyQuery.INSERT_PRODUTO_COMPRADO;
+				sql = MyQuery.INSERT_PRODUTOS_COMPRADOS;
 				PreparedStatement ps = con.prepareStatement(sql);
 
 				ps.setInt(1, compra.getId());
