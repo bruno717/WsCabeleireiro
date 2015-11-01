@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 
 import br.com.salaodebeleza.model.Compra;
 import br.com.salaodebeleza.model.Pedido;
+import br.com.salaodebeleza.util.DataCorrente;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusCompraPedido;
+import br.com.salaodebeleza.util.TipoUsuario;
 
 public class PedidoDAO {
 
@@ -22,6 +24,8 @@ public class PedidoDAO {
 
 			ps.setInt(1, compra.getId());
 			ps.setInt(2, StatusCompraPedido.EM_ABERTO);
+			ps.setDate(3, DataCorrente.CURRENT_DATE);
+			ps.setInt(4, TipoUsuario.ADM);
 			ps.execute();
 
 			ps.close();

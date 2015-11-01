@@ -8,6 +8,24 @@ public class Produto {
 	private String fabricante;
 	private String descricao;
 	private Float preco;
+	
+	
+
+	public Produto() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Produto(Integer id, Integer tipoProduto, String nome,
+			String fabricante, String descricao, Float preco) {
+		super();
+		this.id = id;
+		this.tipoProduto = tipoProduto;
+		this.nome = nome;
+		this.fabricante = fabricante;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
 
 	public Integer getId() {
 		return id;

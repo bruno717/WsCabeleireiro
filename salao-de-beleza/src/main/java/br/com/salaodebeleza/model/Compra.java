@@ -11,6 +11,26 @@ public class Compra {
 	private List<Produto> produtos;
 	private Float valor;
 	private Integer Status;
+	
+	
+
+	public Compra() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Compra(Integer id, Integer idFuncionario, Integer idFonernecedor,
+			Integer tipoPagamento, List<Produto> produtos, Float valor,
+			Integer status) {
+		super();
+		this.id = id;
+		this.idFuncionario = idFuncionario;
+		this.idFonernecedor = idFonernecedor;
+		this.tipoPagamento = tipoPagamento;
+		this.produtos = produtos;
+		this.valor = valor;
+		Status = status;
+	}
 
 	public Integer getId() {
 		return id;

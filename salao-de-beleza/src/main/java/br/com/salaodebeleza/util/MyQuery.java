@@ -41,24 +41,25 @@ public class MyQuery {
 	public static final String SELECT_PRODUTOS_ESTOQUE = "SELECT * FROM tb_estoque";
 
 	// Compra
-	public static final String INSERT_COMPRA = "INSERT INTO tb_compras (id_usuario, id_tipo_pagamento, id_usuario_cadastro, cd_status) VALUES (?, ?, ?, ?)";
+	public static final String INSERT_COMPRA = "INSERT INTO tb_compras (id_usuario, id_tipo_pagamento, id_usuario_cadastro, cd_status, dt_operacao) VALUES (?, ?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_COMPRA = "UPDATE tb_compras SET cd_status=? WHERE id_compra=?";
 
-	public static final String INSERT_PRODUTOS_COMPRADOS = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, cd_status, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?)";
+	public static final String INSERT_PRODUTOS_COMPRADOS = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_PRODUTOS_COMPRADOS = "UPDATE tb_produtos_comprados SET cd_status=? WHERE id_compra=?";
 	
 
 	public static final String SELECT_COMPRAS = "SELECT * FROM tb_compras";
 
 	// Pedido
-	public static final String INSERT_PEDIDO = "INSERT INTO tb_pedidos (id_compra, cd_status) VALUES (?, ?)";
+	public static final String INSERT_PEDIDO = "INSERT INTO tb_pedidos (id_compra, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_PEDIDO = "UPDATE tb_pedidos SET cd_status=? WHERE id_pedido=?";
 	public static final String SELECT_PEDIDO = "SELECT * FROM tb_pedidos WHERE id_pedido=?";
 
 	// Tipo Conta
-	public static final String INSERT_TIPO_CONTA = "INSERT INTO tb_tipos_contas (ds_tipo_conta) VALUES (?)";
+	public static final String INSERT_TIPO_CONTA = "INSERT INTO tb_tipos_contas (ds_tipo_conta, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
 	public static final String UPDATE_TIPO_CONTA = "UPDATE tb_tipos_contas SET ds_tipo_conta=? WHERE id_tipo_conta=?";
-	public static final String SELECT_TIPO_CONTA = "SELECT * FROM tb_tipos_contas ORDER BY ds_tipo_conta";
+	public static final String SELECT_TIPO_CONTAS = "SELECT * FROM tb_tipos_contas ORDER BY ds_tipo_conta";
+	public static final String SELECT_TIPO_CONTA = "SELECT * FROM tb_tipos_contas WHERE id_tipo_conta=?";
 	
 	// Conta Pagar
 	public static final String INSERT_CONTA_PAGAR = "INSERT INTO tb_contas_pagar (id_pedido, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_pagamento, qt_desconto, qt_juros, vl_total_conta, vl_total_pago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";

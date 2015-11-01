@@ -1,10 +1,10 @@
 package br.com.salaodebeleza.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import br.com.salaodebeleza.model.ContaPagar;
+import br.com.salaodebeleza.util.DataCorrente;
 import br.com.salaodebeleza.util.MyQuery;
 
 public class ContaPagarDAO {
@@ -23,7 +23,7 @@ public class ContaPagarDAO {
 			ps.setInt(3, contaPagar.getParcelas() == null ? 0 : contaPagar.getParcelas());
 			ps.setInt(4, contaPagar.getParcelaAtual() == null ? 0 : contaPagar.getParcelaAtual());
 			ps.setString(5, contaPagar.getDataVencimento().toString());
-			ps.setDate(6, Date.valueOf(contaPagar.getDataPagamento().toString()));
+			ps.setDate(6, DataCorrente.CURRENT_DATE);
 			ps.setInt(7, contaPagar.getDesconto() == null ? 0 : contaPagar.getDesconto().intValue());
 			ps.setInt(8, contaPagar.getJuros() == null ? 0 : contaPagar.getJuros().intValue());
 			ps.setDouble(9, contaPagar.getValorConta() == null ? 0 : contaPagar.getValorConta());

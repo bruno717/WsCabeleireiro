@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.salaodebeleza.model.TipoConta;
+import br.com.salaodebeleza.util.DataCorrente;
 import br.com.salaodebeleza.util.MyQuery;
+import br.com.salaodebeleza.util.StatusUsuario;
+import br.com.salaodebeleza.util.TipoUsuario;
 
 public class TipoContaDAO {
 	
@@ -21,6 +24,9 @@ public class TipoContaDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1, tipoConta.getDsTipoConta());
+			ps.setInt(2, StatusUsuario.USUARIO_ATIVO);
+			ps.setDate(3, DataCorrente.CURRENT_DATE);
+			ps.setInt(4, TipoUsuario.ADM);
 			ps.execute();
 
 			ps.close();
@@ -60,13 +66,13 @@ public class TipoContaDAO {
 		return resp;
 	}
 	
-	public List<TipoConta> buscarTipoProdutos() {
+	public List<TipoConta> buscarTipoContas() {
 
 		String sql;
 		List<TipoConta> lista = new ArrayList<TipoConta>();
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_TIPOS_PRODUTOS;
+			sql = MyQuery.SELECT_TIPO_CONTAS;
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 

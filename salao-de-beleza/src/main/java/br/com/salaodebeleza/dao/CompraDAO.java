@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.salaodebeleza.model.Compra;
+import br.com.salaodebeleza.util.DataCorrente;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusCompraPedido;
 import br.com.salaodebeleza.util.TipoUsuario;
@@ -16,6 +17,7 @@ public class CompraDAO {
 	public Boolean inserirCompra(Compra compra) {
 
 		String sql;
+		Compra compraCadastrada = null;
 		Boolean resp = false;
 		try {
 			Connection con = Connect.getConexao();
@@ -26,16 +28,18 @@ public class CompraDAO {
 			ps.setInt(2, compra.getTipoPagamento() == null ? 0 : compra.getTipoPagamento());
 			ps.setInt(3, TipoUsuario.FUNCIONARIO);
 			ps.setInt(4, StatusCompraPedido.EM_ABERTO);
+			ps.setDate(5, DataCorrente.CURRENT_DATE);
 			ps.execute();
 
 			ps.close();
 			con.close();
 			resp = true;
 
-			Compra compraCadastrada = buscarUltimaCompra();
+		    compraCadastrada = buscarUltimaCompra();
 
 			if (compraCadastrada != null) {
-				resp = inserirPrudutoComprado(compraCadastrada);
+				compra.setId(compraCadastrada.getId());
+				resp = inserirPrudutoComprado(compra);
 			}
 
 		} catch (Exception e) {
@@ -76,7 +80,6 @@ public class CompraDAO {
 		String sql;
 		Boolean resp = false;
 		try {
-
 			for (int i = 0; i < compra.getProdutos().size(); i++) {
 				Connection con = Connect.getConexao();
 				sql = MyQuery.INSERT_PRODUTOS_COMPRADOS;
@@ -84,8 +87,10 @@ public class CompraDAO {
 
 				ps.setInt(1, compra.getId());
 				ps.setInt(2, compra.getProdutos().get(i).getId());
-				ps.setInt(3, StatusCompraPedido.EM_ABERTO);
-				ps.setInt(4, 0);
+				ps.setInt(3, 1);
+				ps.setInt(4, StatusCompraPedido.EM_ABERTO);
+				ps.setDate(5, DataCorrente.CURRENT_DATE);
+				ps.setInt(6, TipoUsuario.ADM);
 				ps.execute();
 
 				ps.close();
