@@ -40,7 +40,7 @@ public class PedidoDAO {
 		return resp;
 	}
 
-	public Boolean atualizarStatusCompra(Integer id) {
+	public Boolean atualizarStatusPedido(Integer id) {
 
 		String sql;
 		Boolean resp = false;
@@ -82,7 +82,7 @@ public class PedidoDAO {
 				pedido.getCompra().setId(rs.getInt("id_compra"));
 				pedido.setStatus(rs.getInt("cd_status"));
 			}
-
+			rs.close();
 			ps.close();
 			con.close();
 		} catch (Exception e) {

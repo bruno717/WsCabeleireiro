@@ -8,9 +8,9 @@ public class Funcionario {
 		super();
 	}
 
-	public Funcionario(String nome, Integer telefone, String email,
-			String senha, Integer telefone2, String nascimento, Long cpf,
-			String sexo, Integer cep, String logradouro, String numero,
+	public Funcionario(String nome, String telefone, String email,
+			String senha, String telefone2, String nascimento, Long cpf,
+			String sexo, String cep, String logradouro, String numero,
 			String bairro, String cidade, String estado, String pais) {
 
 		super();

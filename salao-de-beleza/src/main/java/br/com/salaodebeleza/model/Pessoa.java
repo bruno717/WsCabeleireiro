@@ -10,7 +10,7 @@ public class Pessoa {
 	private String nome;
 	private String email;
 	private String senha;
-	private Integer telefone;
+	private String telefone;
 	private Date dtNascimento;
 	private String logradouro;
 	private String numero;
@@ -19,15 +19,15 @@ public class Pessoa {
 	private String estado;
 	private String pais;
 	private String sexo;
-	private Integer telefone2;
+	private String telefone2;
 	private Integer tipoUsuario;
-	private Integer cep;
+	private String cep;
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -55,11 +55,11 @@ public class Pessoa {
 		this.senha = senha;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -139,11 +139,11 @@ public class Pessoa {
 		this.sexo = sexo;
 	}
 
-	public Integer getTelefone2() {
+	public String getTelefone2() {
 		return telefone2;
 	}
 
-	public void setTelefone2(Integer telefone2) {
+	public void setTelefone2(String telefone2) {
 		this.telefone2 = telefone2;
 	}
 

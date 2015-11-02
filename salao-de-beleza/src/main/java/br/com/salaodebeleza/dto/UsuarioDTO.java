@@ -6,7 +6,7 @@ public class UsuarioDTO {
 		super();
 	}
 	
-	public UsuarioDTO(String nome, Integer telefone, String email, String senha){
+	public UsuarioDTO(String nome, String telefone, String email, String senha){
 		super();
 		this.nome = nome;
 		this. telefone = telefone;
@@ -17,7 +17,7 @@ public class UsuarioDTO {
 	private Integer id;
 	private Integer idTipoUsuario;
 	private String nome;
-	private Integer telefone;
+	private String telefone;
 	private String email;
 	private String senha;
 
@@ -45,11 +45,11 @@ public class UsuarioDTO {
 		this.nome = nome;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

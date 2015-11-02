@@ -3,7 +3,7 @@ package br.com.salaodebeleza.model;
 public class Pedido {
 
 	private Integer id;
-	private Compra compra;
+	private Compra compra = new Compra();
 	private Integer status;
 
 	public Integer getId() {

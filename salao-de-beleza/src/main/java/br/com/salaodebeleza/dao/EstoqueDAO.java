@@ -60,6 +60,31 @@ public class EstoqueDAO {
 
 		return resp;
 	}
+	
+	public Boolean alterarProdutoEstoquePorIdProduto(Integer qtd, Integer idProduto) {
+
+		String sql;
+		Boolean resp;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.UPDATE_PRODUTO_ESTOQUE_ID_PRODUTO;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, qtd);
+			ps.setInt(2, idProduto);
+			ps.execute();
+
+			ps.close();
+			con.close();
+			resp = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
 
 	public Boolean excluirProdutoEstoque(Integer id) {
 

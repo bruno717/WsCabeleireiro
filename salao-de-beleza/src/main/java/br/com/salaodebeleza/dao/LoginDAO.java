@@ -24,7 +24,7 @@ public class LoginDAO {
 				dto.setId(rs.getInt("id_usuario"));
 				dto.setIdTipoUsuario(rs.getInt("id_tipo_usuario"));
 				dto.setNome(rs.getString("ds_nome"));
-				dto.setTelefone(rs.getInt("nr_telefone"));
+				dto.setTelefone(rs.getString("nr_telefone"));
 				dto.setEmail(rs.getString("ds_email"));
 				dto.setSenha(rs.getString("cd_senha"));
 			}

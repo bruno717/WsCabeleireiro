@@ -13,14 +13,14 @@ public class ClienteDTO {
 
 	private Integer id;
 	private String nome;
-	private Integer telefone;
+	private String telefone;
 	private String email;
 	private String senha;
-	private Integer telefone2;
+	private String telefone2;
 	private Date dtNascimento;
 	private Long cpf;
 	private String sexo;
-	private Integer cep;
+	private String cep;
 	private String logradouro;
 	private String numero;
 	private String bairro;
@@ -45,11 +45,11 @@ public class ClienteDTO {
 		this.nome = nome;
 	}
 
-	public Integer getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Integer telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 
@@ -69,11 +69,11 @@ public class ClienteDTO {
 		this.senha = senha;
 	}
 
-	public Integer getTelefone2() {
+	public String getTelefone2() {
 		return telefone2;
 	}
 
-	public void setTelefone2(Integer telefone2) {
+	public void setTelefone2(String telefone2) {
 		this.telefone2 = telefone2;
 	}
 
@@ -114,11 +114,11 @@ public class ClienteDTO {
 		this.sexo = sexo;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

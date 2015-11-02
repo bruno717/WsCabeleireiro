@@ -27,12 +27,12 @@ public class FuncionarioDAO {
 
 			ps.setInt(1, TipoUsuario.FUNCIONARIO);
 			ps.setString(2, funcionario.getNome());
-			ps.setInt(3, funcionario.getTelefone() == null ? 0 : funcionario.getTelefone());
+			ps.setString(3, funcionario.getTelefone());
 			ps.setString(4, funcionario.getEmail());
 			ps.setString(5, funcionario.getSenha());
 			ps.setInt(6, StatusUsuario.USUARIO_ATIVO);
 			ps.setInt(7, TipoUsuario.ADM);
-			ps.setInt(8, funcionario.getTelefone2() == null ? 0 : funcionario.getTelefone2());
+			ps.setString(8, funcionario.getTelefone2());
 			ps.setDate(9, new Date(funcionario.getDtNascimento().getTime()));
 			ps.setLong(10, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(11, funcionario.getSexo());
@@ -40,7 +40,7 @@ public class FuncionarioDAO {
 			ps.setInt(13, 0);
 			ps.setInt(14, 0);
 			ps.setInt(15, 0);
-			ps.setInt(16, funcionario.getCep() == null ? 0 : funcionario.getCep());
+			ps.setString(16, funcionario.getCep());
 			ps.setString(17, funcionario.getLogradouro());
 			ps.setString(18, funcionario.getNumero());
 			ps.setString(19, funcionario.getBairro());
@@ -78,14 +78,14 @@ public class FuncionarioDAO {
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setString(1, funcionario.getNome());
-			ps.setInt(2, funcionario.getTelefone() == null ? 0 : funcionario.getTelefone());
+			ps.setString(2, funcionario.getTelefone());
 			ps.setString(3, funcionario.getEmail());
 			ps.setString(4, funcionario.getSenha());
-			ps.setInt(5, funcionario.getTelefone2() == null ? 0 : funcionario.getTelefone2());
+			ps.setString(5, funcionario.getTelefone2());
 			ps.setDate(6, new Date(funcionario.getDtNascimento().getTime()));
 			ps.setLong(7, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(8, funcionario.getSexo());
-			ps.setInt(9, funcionario.getCep() == null ? 0 : funcionario.getCep());
+			ps.setString(9, funcionario.getCep());
 			ps.setString(10, funcionario.getLogradouro());
 			ps.setString(11, funcionario.getNumero());
 			ps.setString(12, funcionario.getBairro());
@@ -123,14 +123,14 @@ public class FuncionarioDAO {
 				dto.setId(rs.getInt("id_usuario"));
 				dto.setTipoUsuario(rs.getInt("id_tipo_usuario"));
 				dto.setNome(rs.getString("ds_nome"));
-				dto.setTelefone(rs.getInt("nr_telefone"));
+				dto.setTelefone(rs.getString("nr_telefone"));
 				dto.setEmail(rs.getString("ds_email"));
 				dto.setSenha(rs.getString("cd_senha"));
-				dto.setTelefone2(rs.getInt("nr_telefone2"));
+				dto.setTelefone2(rs.getString("nr_telefone2"));
 				dto.setDtNascimento(rs.getDate("dt_nascimento"));
 				dto.setCpf(rs.getLong("nr_cpf"));
 				dto.setSexo(rs.getString("ds_sexo"));
-				dto.setCep(rs.getInt("nr_cep"));
+				dto.setCep(rs.getString("nr_cep"));
 				dto.setLogradouro(rs.getString("ds_logradouro"));
 				dto.setNumero(rs.getString("nr_numero"));
 				dto.setBairro(rs.getString("ds_bairro"));
@@ -168,14 +168,14 @@ public class FuncionarioDAO {
 				dto.setId(rs.getInt("id_usuario"));
 				dto.setTipoUsuario(rs.getInt("id_tipo_usuario"));
 				dto.setNome(rs.getString("ds_nome"));
-				dto.setTelefone(rs.getInt("nr_telefone"));
+				dto.setTelefone(rs.getString("nr_telefone"));
 				dto.setEmail(rs.getString("ds_email"));
 				dto.setSenha(rs.getString("cd_senha"));
-				dto.setTelefone2(rs.getInt("nr_telefone2"));
+				dto.setTelefone2(rs.getString("nr_telefone2"));
 				dto.setDtNascimento(rs.getDate("dt_nascimento"));
 				dto.setCpf(rs.getLong("nr_cpf"));
 				dto.setSexo(rs.getString("ds_sexo"));
-				dto.setCep(rs.getInt("nr_cep"));
+				dto.setCep(rs.getString("nr_cep"));
 				dto.setLogradouro(rs.getString("ds_logradouro"));
 				dto.setNumero(rs.getString("nr_numero"));
 				dto.setBairro(rs.getString("ds_bairro"));

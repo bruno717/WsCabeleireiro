@@ -36,6 +36,7 @@ public class MyQuery {
 	// Estoque
 	public static final String INSERT_PRODUTO_ESTOQUE = "INSERT INTO tb_estoque (id_produto, qt_produto) VALUES (?, ?)";
 	public static final String UPDATE_PRODUTO_ESTOQUE = "UPDATE tb_estoque SET qt_produto = ? WHERE id_estoque = ?";
+	public static final String UPDATE_PRODUTO_ESTOQUE_ID_PRODUTO = "UPDATE tb_estoque SET qt_produto = ? WHERE id_produto = ?";
 	public static final String DELETE_PRODUTO_ESTOQUE = "DELETE FROM tb_estoque WHERE id_estoque = ?";
 	public static final String SELECT_PRODUTO_ESTOQUE = "SELECT * FROM tb_estoque WHERE id_estoque = ?";
 	public static final String SELECT_PRODUTOS_ESTOQUE = "SELECT * FROM tb_estoque";
@@ -46,6 +47,7 @@ public class MyQuery {
 
 	public static final String INSERT_PRODUTOS_COMPRADOS = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_PRODUTOS_COMPRADOS = "UPDATE tb_produtos_comprados SET cd_status=? WHERE id_compra=?";
+	public static final String SELECT_QUANTIDADE_PRODUTOS_COMPRADOS = "SELECT * FROM tb_produtos_comprados WHERE id_compra=?";
 	
 
 	public static final String SELECT_COMPRAS = "SELECT * FROM tb_compras";
