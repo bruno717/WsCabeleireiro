@@ -14,9 +14,9 @@ import br.com.salaodebeleza.dao.UsuarioDAO;
 public class UsuarioController {
 	
 	@RequestMapping(value = "inativar", method = RequestMethod.PUT)
-	public Boolean inativarUsuario(@RequestParam String email, HttpServletResponse response){
+	public Boolean inativarUsuario(@RequestParam Integer id, HttpServletResponse response){
 		
-		Boolean resp = new UsuarioDAO().inativarUsuario(email);
+		Boolean resp = new UsuarioDAO().inativarUsuario(id);
 		
 		response.setStatus(resp == true ? HttpServletResponse.SC_OK : HttpServletResponse.SC_CONFLICT);
 		

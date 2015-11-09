@@ -1,7 +1,6 @@
 package br.com.salaodebeleza.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -73,7 +72,7 @@ public class ClienteDAO {
 			ps.setInt(9, StatusUsuario.USUARIO_ATIVO);
 			ps.setInt(10, TipoUsuario.ADM);
 			ps.setString(11, dto.getTelefone2());
-			ps.setDate(12, new Date(dto.getDtNascimento().getTime()));
+			ps.setString(12, dto.getDtNascimento());
 			ps.setLong(13, dto.getCpf() == null ? 0 : dto.getCpf());
 			ps.setString(14, dto.getSexo());
 			ps.setLong(15, 0L);
@@ -121,7 +120,7 @@ public class ClienteDAO {
 				dto.setEmail(rs.getString("ds_email"));
 				dto.setSenha(rs.getString("cd_senha"));
 				dto.setTelefone2(rs.getString("nr_telefone2"));
-				dto.setDtNascimento(rs.getDate("dt_nascimento"));
+				dto.setDtNascimento(rs.getString("dt_nascimento"));
 				dto.setCpf(rs.getLong("nr_cpf"));
 				dto.setSexo(rs.getString("ds_sexo"));
 				dto.setCep(rs.getString("nr_cep"));
@@ -168,7 +167,7 @@ public class ClienteDAO {
 				dto.setEmail(rs.getString("ds_email"));
 				dto.setSenha(rs.getString("cd_senha"));
 				dto.setTelefone2(rs.getString("nr_telefone2"));
-				dto.setDtNascimento(rs.getDate("dt_nascimento"));
+				dto.setDtNascimento(rs.getString("dt_nascimento"));
 				dto.setCpf(rs.getLong("nr_cpf"));
 				dto.setSexo(rs.getString("ds_sexo"));
 				dto.setCep(rs.getString("nr_cep"));

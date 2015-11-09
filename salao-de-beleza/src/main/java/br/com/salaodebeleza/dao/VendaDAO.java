@@ -6,27 +6,26 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.salaodebeleza.model.Compra;
-import br.com.salaodebeleza.model.ProdutoCompradoCustomizado;
+import br.com.salaodebeleza.model.Venda;
 import br.com.salaodebeleza.util.DataCorrente;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusCompraPedido;
 import br.com.salaodebeleza.util.TipoUsuario;
 
-public class CompraDAO {
+public class VendaDAO {
 
-	public Boolean inserirCompra(Compra compra) {
+	public Venda inserirVenda(Venda venda) {
 
 		String sql;
-		Compra compraCadastrada = null;
+		Venda vendaCadastrada = null;
 		Boolean resp = false;
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.INSERT_COMPRA;
+			sql = MyQuery.INSERT_VENDA;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setInt(1, compra.getIdFuncionario() == null ? 0 : compra.getIdFuncionario());
-			ps.setInt(2, compra.getTipoPagamento() == null ? 0 : compra.getTipoPagamento());
+			ps.setInt(1, venda.getIdUsuario() == null ? 0 : venda.getIdUsuario());
+			ps.setInt(2, venda.getIdTipoRecebimento() == null ? 0 : venda.getIdTipoRecebimento());
 			ps.setInt(3, TipoUsuario.FUNCIONARIO);
 			ps.setInt(4, StatusCompraPedido.EM_ABERTO);
 			ps.setDate(5, DataCorrente.CURRENT_DATE);
@@ -36,11 +35,11 @@ public class CompraDAO {
 			con.close();
 			resp = true;
 
-		    compraCadastrada = buscarUltimaCompra();
+			vendaCadastrada = buscarUltimaVenda();
 
-			if (compraCadastrada != null) {
-				compra.setId(compraCadastrada.getId());
-				resp = inserirProdutoComprado(compra);
+			if (vendaCadastrada.getProdutos() != null) {
+				venda.setId(vendaCadastrada.getId());
+				resp = inserirProdutoServicoVendido(venda);
 			}
 
 		} catch (Exception e) {
@@ -48,16 +47,16 @@ public class CompraDAO {
 			resp = false;
 		}
 
-		return resp;
+		return resp ? venda : null;
 	}
 
-	public Boolean atualizarStatusCompra(Integer id) {
+	public Boolean atualizarStatusVenda(Integer id) {
 
 		String sql;
 		Boolean resp = false;
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.UPDATE_STATUS_COMPRA;
+			sql = MyQuery.UPDATE_STATUS_VENDA;
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setInt(1, StatusCompraPedido.FINALIZADO);
@@ -67,7 +66,7 @@ public class CompraDAO {
 			ps.close();
 			con.close();
 
-			resp = atualizarPrudutoComprado(id);
+			resp = atualizarPrudutoVendido(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp = false;
@@ -75,51 +74,49 @@ public class CompraDAO {
 
 		return resp;
 	}
-	
-	public ProdutoCompradoCustomizado buscaQdtProdutosComprados(Integer idCompra) {
 
-		String sql;
-		Integer qtd = 0;
-		ProdutoCompradoCustomizado pcc = new ProdutoCompradoCustomizado();
-		try {
-			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_QUANTIDADE_PRODUTOS_COMPRADOS;
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setInt(1, idCompra);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				qtd++;
-				pcc.setId(rs.getInt("id_produto_comprado"));
-				pcc.setIdCompra(rs.getInt("id_compra"));
-				pcc.setIdProduto(rs.getInt("id_produto"));
-				pcc.setIdServico(rs.getInt("id_servico"));
-				pcc.setCdStatus(rs.getInt("cd_status"));
-				pcc.setQtdProduto(qtd);
-			}
-
-			rs.close();
-			ps.close();
-			con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return pcc;
-	}
-
-	private Boolean inserirProdutoComprado(Compra compra) {
+	private Boolean atualizarPrudutoVendido(Integer idVenda) {
 
 		String sql;
 		Boolean resp = false;
 		try {
-			for (int i = 0; i < compra.getProdutos().size(); i++) {
+
+			Connection con = Connect.getConexao();
+			sql = MyQuery.UPDATE_STATUS_PRODUTOS_VENDIDOS;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, StatusCompraPedido.FINALIZADO);
+			ps.setInt(2, idVenda);
+			ps.execute();
+
+			ps.close();
+			con.close();
+
+			resp = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
+
+	private Boolean inserirProdutoServicoVendido(Venda venda) {
+
+		String sql;
+		Boolean resp = false;
+		try {
+			for (int i = 0; i < venda.getProdutos().size(); i++) {
 				Connection con = Connect.getConexao();
-				sql = MyQuery.INSERT_PRODUTOS_COMPRADOS;
+				sql = MyQuery.INSERT_PRODUTOS_VENDIDOS;
 				PreparedStatement ps = con.prepareStatement(sql);
 
-				ps.setInt(1, compra.getId());
-				ps.setInt(2, compra.getProdutos().get(i).getId());
-				ps.setInt(3, 1);
+				ps.setInt(1, venda.getId());
+				ps.setInt(2, venda.getProdutos().get(i).getId() == null ? 0
+						: venda.getProdutos().get(i).getId());
+				ps.setInt(3, venda.getServicos().get(i).getId() == null ? 0
+						: venda.getServicos().get(i).getId());
 				ps.setInt(4, StatusCompraPedido.EM_ABERTO);
 				ps.setDate(5, DataCorrente.CURRENT_DATE);
 				ps.setInt(6, TipoUsuario.ADM);
@@ -139,49 +136,22 @@ public class CompraDAO {
 		return resp;
 	}
 
-	private Boolean atualizarPrudutoComprado(Integer idCompra) {
+	private Venda buscarUltimaVenda() {
 
 		String sql;
-		Boolean resp = false;
-		try {
-
-			Connection con = Connect.getConexao();
-			sql = MyQuery.UPDATE_STATUS_PRODUTOS_COMPRADOS;
-			PreparedStatement ps = con.prepareStatement(sql);
-
-			ps.setInt(1, StatusCompraPedido.FINALIZADO);
-			ps.setInt(2, idCompra);
-			ps.execute();
-
-			ps.close();
-			con.close();
-
-			resp = true;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			resp = false;
-		}
-
-		return resp;
-	}
-
-	private Compra buscarUltimaCompra() {
-
-		String sql;
-		List<Compra> lista = new ArrayList<Compra>();
+		List<Venda> lista = new ArrayList<Venda>();
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_COMPRAS;
+			sql = MyQuery.SELECT_VENDAS;
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Compra compra = new Compra();
-				compra.setId(rs.getInt("id_compra"));
-				compra.setIdFuncionario(rs.getInt("id_usuario"));
-				compra.setTipoPagamento(rs.getInt("id_tipo_pagamento"));
-				lista.add(compra);
+				Venda venda = new Venda();
+				venda.setId(rs.getInt("id_venda"));
+				venda.setIdUsuario(rs.getInt("id_usuario"));
+				venda.setIdTipoRecebimento(rs.getInt("id_tipo_recebimento"));
+				lista.add(venda);
 			}
 
 			rs.close();
@@ -191,6 +161,34 @@ public class CompraDAO {
 			e.printStackTrace();
 		}
 		return lista.get(lista.size() - 1);
+	}
+
+	public Venda getVenda(Integer id) {
+
+		String sql;
+		Venda venda = null;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.SELECT_VENDA;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				venda = new Venda();
+				venda.setId(rs.getInt("id_venda"));
+				venda.setIdUsuario(rs.getInt("id_usuario"));
+				venda.setIdTipoRecebimento(rs.getInt("id_tipo_recebimento"));
+			}
+
+			rs.close();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return venda;
 	}
 
 }

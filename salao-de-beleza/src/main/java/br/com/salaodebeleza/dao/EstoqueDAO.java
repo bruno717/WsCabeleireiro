@@ -61,10 +61,57 @@ public class EstoqueDAO {
 		return resp;
 	}
 	
-	public Boolean alterarProdutoEstoquePorIdProduto(Integer qtd, Integer idProduto) {
+	public Boolean somarProdutoEstoquePorIdProduto(Integer qtd, Integer idProduto) {
 
 		String sql;
 		Boolean resp;
+		List<Estoque> listaEstoque = new ArrayList<Estoque>();
+
+		listaEstoque = getListaProdutoEstoque();
+		
+		for (int i = 0; i < listaEstoque.size(); i++) {
+			if(listaEstoque.get(i).getIdProduto() == idProduto){
+				qtd = qtd + listaEstoque.get(i).getQuantidade();
+				break;
+			}
+		}
+		
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.UPDATE_PRODUTO_ESTOQUE_ID_PRODUTO;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, qtd);
+			ps.setInt(2, idProduto);
+			ps.execute();
+
+			ps.close();
+			con.close();
+			resp = true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
+	
+	public Boolean subtrairProdutoEstoquePorIdProduto(Integer qtd, Integer idProduto) {
+
+		String sql;
+		Boolean resp;
+		List<Estoque> listaEstoque = new ArrayList<Estoque>();
+
+		listaEstoque = getListaProdutoEstoque();
+		
+		for (int i = 0; i < listaEstoque.size(); i++) {
+			if(listaEstoque.get(i).getIdProduto() == idProduto){
+				qtd = listaEstoque.get(i).getQuantidade() - qtd;
+				break;
+			}
+		}
+		
 		try {
 			Connection con = Connect.getConexao();
 			sql = MyQuery.UPDATE_PRODUTO_ESTOQUE_ID_PRODUTO;

@@ -51,7 +51,7 @@ public class CompraService {
 				resp = compraDAO.atualizarStatusCompra(pedido.getCompra().getId());
 				if (resp) {
 					pcc = compraDAO.buscaQdtProdutosComprados(pedido.getCompra().getId());
-					resp = estoqueDAO.alterarProdutoEstoquePorIdProduto(pcc.getQtdProduto(), pcc.getIdProduto());
+					resp = estoqueDAO.somarProdutoEstoquePorIdProduto(pcc.getQtdProduto(), pcc.getIdProduto());
 				}
 			}
 		}

@@ -6,7 +6,7 @@ public class MyQuery {
 
 	// Usuario
 	public static final String SELECT_USUARIO_TODOS_DADOS = "SELECT * FROM tb_usuarios AS u INNER JOIN tb_dados_usuarios AS d INNER JOIN tb_enderecos AS e ON u.id_usuario = d.id_usuario AND d.id_endereco = e.id_endereco WHERE u.ds_email = ?";
-	public static final String UPDATE_INATIVAR_USUARIO = "UPDATE tb_usuarios AS u SET u.cd_status=2 WHERE u.ds_email = ?";
+	public static final String UPDATE_INATIVAR_USUARIO = "UPDATE tb_usuarios AS u SET u.cd_status=2 WHERE u.id_usuario = ?";
 	// public static final String SELECT_USUARIOS =
 	// "SELECT * FROM tb_usuarios AS u INNER JOIN tb_dados_usuarios AS d INNER JOIN tb_enderecos AS e ON u.id_usuario = d.id_usuario AND d.id_endereco = e.id_endereco WHERE u.id_tipo_usuario = ? ORDER BY u.ds_nome";
 	public static final String SELECT_USUARIOS = "SELECT * FROM tb_usuarios AS u LEFT JOIN tb_dados_usuarios AS d ON u.id_usuario = d.id_usuario LEFT JOIN tb_enderecos AS e ON d.id_endereco = e.id_endereco WHERE u.id_tipo_usuario = ? ORDER BY u.ds_nome";
@@ -25,13 +25,13 @@ public class MyQuery {
 	public static final String INSERT_TIPO_PRODUTO = "INSERT INTO tb_tipos_produtos (ds_tipo_produto, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
 	public static final String UPDATE_TIPO_PRODUTO = "UPDATE tb_tipos_produtos SET ds_tipo_produto=? WHERE id_tipo_produto = ?";
 	public static final String SELECT_TIPO_PRODUTO = "SELECT * FROM tb_tipos_produtos WHERE id_tipo_produto = ?";
-	public static final String SELECT_TIPOS_PRODUTOS = "SELECT * FROM tb_tipos_produtos ORDER BY ds_tipo_produto";
+	public static final String SELECT_TIPOS_PRODUTOS = "SELECT * FROM tb_tipos_produtos WHERE cd_status = 1 ORDER BY ds_tipo_produto";
 
 	// Produto
 	public static final String INSERT_PRODUTO = "INSERT INTO tb_produtos (id_tipo_produto, ds_produto, ds_fabricante, vl_preco, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_PRODUTO = "UPDATE tb_produtos SET id_tipo_produto=?, ds_produto=?, ds_fabricante=?, vl_preco=? WHERE id_produto = ?";
 	public static final String SELECT_PRODUTO = "SELECT * FROM tb_produtos WHERE id_produto = ?";
-	public static final String SELECT_PRODUTOS = "SELECT * FROM tb_produtos ORDER BY ds_produto";
+	public static final String SELECT_PRODUTOS = "SELECT * FROM tb_produtos WHERE cd_status = 1 ORDER BY ds_produto";
 
 	// Estoque
 	public static final String INSERT_PRODUTO_ESTOQUE = "INSERT INTO tb_estoque (id_produto, qt_produto) VALUES (?, ?)";
@@ -66,4 +66,16 @@ public class MyQuery {
 	// Conta Pagar
 	public static final String INSERT_CONTA_PAGAR = "INSERT INTO tb_contas_pagar (id_pedido, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_pagamento, qt_desconto, qt_juros, vl_total_conta, vl_total_pago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+	// Venda
+	public static final String INSERT_VENDA = "INSERT INTO tb_vendas (id_usuario, id_tipo_recebimento, id_usuario_cadastro, cd_status, dt_operacao) VALUES (?, ?, ?, ?, ?)";
+	public static final String SELECT_VENDAS = "SELECT * FROM tb_vendas";
+	public static final String UPDATE_STATUS_VENDA = "UPDATE tb_vendas SET cd_status=? WHERE id_venda=?";
+	public static final String SELECT_VENDA = "SELECT * FROM tb_vendas WHERE id_venda = ?";
+	
+	public static final String INSERT_PRODUTOS_VENDIDOS = "INSERT INTO tb_produtos_vendidos (id_venda, id_produto, id_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_STATUS_PRODUTOS_VENDIDOS = "UPDATE tb_produtos_vendidos SET cd_status=? WHERE id_venda=?";
+	
+	//Conta Receber
+	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_pagar (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
 }

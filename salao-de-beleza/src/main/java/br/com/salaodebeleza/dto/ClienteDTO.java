@@ -1,9 +1,5 @@
 package br.com.salaodebeleza.dto;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ClienteDTO {
 
@@ -17,7 +13,7 @@ public class ClienteDTO {
 	private String email;
 	private String senha;
 	private String telefone2;
-	private Date dtNascimento;
+	private String dtNascimento;
 	private Long cpf;
 	private String sexo;
 	private String cep;
@@ -77,15 +73,15 @@ public class ClienteDTO {
 		this.telefone2 = telefone2;
 	}
 
-	public Date getDtNascimento() {
+	public String getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(Date dtNascimento) {
+	public void setDtNascimento(String dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 	
-	public void setDtNascimento(String dtNascimento) {
+	/*public void setDtNascimento(String dtNascimento) {
 		
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
 		Date date = null;
@@ -96,7 +92,7 @@ public class ClienteDTO {
 			e.printStackTrace();
 		} 
 		this.dtNascimento = date;
-	}
+	}*/
 
 	public Long getCpf() {
 		return cpf;

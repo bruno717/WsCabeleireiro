@@ -7,7 +7,7 @@ import br.com.salaodebeleza.util.MyQuery;
 
 public class UsuarioDAO {
 
-	public Boolean inativarUsuario(String email) {
+	public Boolean inativarUsuario(Integer id) {
 		String sql;
 		Boolean resp;
 
@@ -16,7 +16,7 @@ public class UsuarioDAO {
 			sql = MyQuery.UPDATE_INATIVAR_USUARIO;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, email);
+			ps.setInt(1, id);
 			ps.execute();
 			
 			ps.close();

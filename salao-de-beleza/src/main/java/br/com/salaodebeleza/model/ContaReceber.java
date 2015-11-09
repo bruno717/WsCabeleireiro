@@ -8,11 +8,29 @@ public class ContaReceber {
 	private Integer idTipoConta;
 	private Integer parcelas;
 	private Date dataVencimento;
-	private Date dataPagamento;
+	private Date dataRecebimento;
 	private Integer parcelaAtual;
 	private Double desconto;
 	private Double juros;
 	private Double valorConta;
+	private Integer idVenda;
+	private Double valorRecebido;
+
+	public Double getValorRecebido() {
+		return valorRecebido;
+	}
+
+	public void setValorRecebido(Double valorRecebido) {
+		this.valorRecebido = valorRecebido;
+	}
+
+	public Integer getIdVenda() {
+		return idVenda;
+	}
+
+	public void setIdVenda(Integer idVenda) {
+		this.idVenda = idVenda;
+	}
 
 	public Integer getIdTipoConta() {
 		return idTipoConta;
@@ -46,12 +64,12 @@ public class ContaReceber {
 		this.dataVencimento = dataVencimento;
 	}
 
-	public Date getDataPagamento() {
-		return dataPagamento;
+	public Date getDataRecebimento() {
+		return dataRecebimento;
 	}
 
-	public void setDataPagamento(Date dataPagamento) {
-		this.dataPagamento = dataPagamento;
+	public void setDataRecebimento(Date dataPagamento) {
+		this.dataRecebimento = dataPagamento;
 	}
 
 	public Integer getParcelaAtual() {
