@@ -21,11 +21,17 @@ public class CompraService {
 		Boolean resp;
 		compraDAO = new CompraDAO();
 		pedidoDAO = new PedidoDAO();
+		estoqueDAO = new EstoqueDAO();
 
 		resp = compraDAO.inserirCompra(compra);
 
 		if (resp) {
 			resp = pedidoDAO.inserirPedido(compra);
+			if(resp){
+				for (int i = 0; i < compra.getProdutos().size(); i++) {
+					resp = estoqueDAO.inserirProdutoEstoque(compra.getProdutos().get(i).getId());
+				}
+			}
 		}
 
 		return resp;

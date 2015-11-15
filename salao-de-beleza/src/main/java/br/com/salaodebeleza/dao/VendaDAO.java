@@ -37,7 +37,7 @@ public class VendaDAO {
 
 			vendaCadastrada = buscarUltimaVenda();
 
-			if (vendaCadastrada.getProdutos() != null) {
+			if (vendaCadastrada.getId() != null) {
 				venda.setId(vendaCadastrada.getId());
 				resp = inserirProdutoServicoVendido(venda);
 			}
@@ -113,10 +113,8 @@ public class VendaDAO {
 				PreparedStatement ps = con.prepareStatement(sql);
 
 				ps.setInt(1, venda.getId());
-				ps.setInt(2, venda.getProdutos().get(i).getId() == null ? 0
-						: venda.getProdutos().get(i).getId());
-				ps.setInt(3, venda.getServicos().get(i).getId() == null ? 0
-						: venda.getServicos().get(i).getId());
+				ps.setInt(2, venda.getProdutos() == null ? 0 : venda.getProdutos().get(i).getId());
+				ps.setInt(3, venda.getServicos() == null ? 1 : venda.getServicos().get(i).getId());
 				ps.setInt(4, StatusCompraPedido.EM_ABERTO);
 				ps.setDate(5, DataCorrente.CURRENT_DATE);
 				ps.setInt(6, TipoUsuario.ADM);

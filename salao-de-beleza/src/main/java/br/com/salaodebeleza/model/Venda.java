@@ -13,6 +13,21 @@ public class Venda {
 	private Boolean adimplante;
 	private Integer status;
 
+	public Venda() {
+	}
+
+	public Venda(Integer idUsuario, Integer idTipoRecebimento,
+			List<Servico> servicos, List<Produto> produtos, Float valor,
+			Boolean adimplante, Integer status) {
+		this.idUsuario = idUsuario;
+		this.idTipoRecebimento = idTipoRecebimento;
+		this.servicos = servicos;
+		this.produtos = produtos;
+		this.valor = valor;
+		this.adimplante = adimplante;
+		this.status = status;
+	}
+
 	public Integer getStatus() {
 		return status;
 	}

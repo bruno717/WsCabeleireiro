@@ -1,6 +1,7 @@
 package br.com.salaodebeleza.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 
 import br.com.salaodebeleza.model.ContaReceber;
@@ -22,7 +23,7 @@ public class ContaReceberDAO {
 			ps.setInt(2, contaReceber.getIdTipoConta());
 			ps.setInt(3, contaReceber.getParcelas() == null ? 0 : contaReceber.getParcelas());
 			ps.setInt(4, contaReceber.getParcelaAtual() == null ? 0 : contaReceber.getParcelaAtual());
-			ps.setString(5, contaReceber.getDataVencimento().toString());
+			ps.setDate(5, new Date(contaReceber.getDataVencimento().getTime()));
 			ps.setDate(6, DataCorrente.CURRENT_DATE);
 			ps.setInt(7, contaReceber.getDesconto() == null ? 0 : contaReceber.getDesconto().intValue());
 			ps.setInt(8, contaReceber.getJuros() == null ? 0 : contaReceber.getJuros().intValue());

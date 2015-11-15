@@ -76,6 +76,6 @@ public class MyQuery {
 	public static final String UPDATE_STATUS_PRODUTOS_VENDIDOS = "UPDATE tb_produtos_vendidos SET cd_status=? WHERE id_venda=?";
 	
 	//Conta Receber
-	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_pagar (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_receber (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
 }

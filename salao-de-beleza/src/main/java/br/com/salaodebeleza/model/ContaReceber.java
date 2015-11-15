@@ -16,6 +16,21 @@ public class ContaReceber {
 	private Integer idVenda;
 	private Double valorRecebido;
 
+	public ContaReceber() {
+	}
+
+	public ContaReceber(Integer idTipoConta, Integer parcelas, Date dataVencimento, Date dataRecebimento, Integer parcelaAtual, Double desconto, Double juros, Double valorConta, Double valorRecebido) {
+		this.idTipoConta = idTipoConta;
+		this.parcelas = parcelas;
+		this.dataVencimento = dataVencimento;
+		this.dataRecebimento = dataRecebimento;
+		this.parcelaAtual = parcelaAtual;
+		this.desconto = desconto;
+		this.juros = juros;
+		this.valorConta = valorConta;
+		this.valorRecebido = valorRecebido;
+	}
+
 	public Double getValorRecebido() {
 		return valorRecebido;
 	}

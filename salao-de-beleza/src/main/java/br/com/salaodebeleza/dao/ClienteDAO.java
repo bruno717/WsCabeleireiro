@@ -51,6 +51,57 @@ public class ClienteDAO {
 		}
 		return dto;
 	}
+	
+	public Boolean criarClienteCompleto(ClienteDTO cliente) {
+
+		Boolean resp = false;
+		String sql;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.INSERT_FUNCIONARIO_TB_USUARIOS_PROC;
+			PreparedStatement ps = con.prepareStatement(sql);
+
+			ps.setInt(1, TipoUsuario.CLIENTE);
+			ps.setString(2, cliente.getNome());
+			ps.setString(3, cliente.getTelefone());
+			ps.setString(4, cliente.getEmail());
+			ps.setString(5, cliente.getSenha());
+			ps.setInt(6, StatusUsuario.USUARIO_ATIVO);
+			ps.setInt(7, TipoUsuario.ADM);
+			ps.setString(8, cliente.getTelefone2());
+			ps.setString(9, cliente.getDtNascimento());
+			ps.setLong(10, cliente.getCpf() == null ? 0 : cliente.getCpf());
+			ps.setString(11, cliente.getSexo());
+			ps.setLong(12, 0L);
+			ps.setInt(13, 0);
+			ps.setInt(14, 0);
+			ps.setInt(15, 0);
+			ps.setString(16, cliente.getCep());
+			ps.setString(17, cliente.getLogradouro());
+			ps.setString(18, cliente.getNumero());
+			ps.setString(19, cliente.getBairro());
+			ps.setString(20, cliente.getCidade());
+			ps.setString(21, cliente.getEstado());
+			ps.setString(22, cliente.getPais());
+
+			ps.execute();
+
+			sql = MyQuery.SELECT_RESPONSE_STATUS;
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				resp = rs.getString("resp").equals(StatusUsuario.USUARIO_CADASTRADO.toString());
+			}
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = false;
+		}
+
+		return resp;
+	}
 
 	public ClienteDTO alterarCliente(ClienteDTO dto) {
 
