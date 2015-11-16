@@ -77,5 +77,11 @@ public class MyQuery {
 	
 	//Conta Receber
 	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_receber (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	
+
+	//Tipo Horario
+	public static final String INSERT_TIPO_HORARIO = "INSERT INTO tb_tipos_horarios (ds_tipo_horario, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
+	public static final String UPDATE_TIPO_HORARIO = "UPDATE tb_tipos_horarios SET ds_tipo_horario=? WHERE id_tipo_horario = ?";
+	public static final String SELECT_TIPO_HORARIO = "SELECT * FROM tb_tipos_horarios WHERE id_tipo_horario = ?";
+	public static final String SELECT_TIPOS_HORARIOS = "SELECT * FROM tb_tipos_horarios WHERE cd_status = 1 ORDER BY ds_tipo_horario";
+
 }
