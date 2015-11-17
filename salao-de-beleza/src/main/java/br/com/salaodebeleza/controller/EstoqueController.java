@@ -17,7 +17,7 @@ import br.com.salaodebeleza.model.Estoque;
 @RequestMapping(value = "estoque")
 public class EstoqueController {
 	
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public Boolean alterarProdutoEstoque(@ModelAttribute Estoque estoque, HttpServletResponse response) {
 
 		Boolean resp = new EstoqueDAO().alterarProdutoEstoque(estoque);
@@ -28,7 +28,7 @@ public class EstoqueController {
 		return resp;
 	}
 	
-	@RequestMapping(value = "excluir", method = RequestMethod.DELETE)
+	@RequestMapping(value = "excluir", method = RequestMethod.POST)
 	public Boolean excluirProdutoEstoque(@RequestParam Integer id, HttpServletResponse response) {
 
 		Boolean resp = new EstoqueDAO().excluirProdutoEstoque(id);

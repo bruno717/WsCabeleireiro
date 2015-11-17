@@ -29,7 +29,7 @@ public class ProdutoController {
 		return resp;
 	}
 
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public Boolean alterarProduto(@ModelAttribute Produto produto,
 			HttpServletResponse response) {
 

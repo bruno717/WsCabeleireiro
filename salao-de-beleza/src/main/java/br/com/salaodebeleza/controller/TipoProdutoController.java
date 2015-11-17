@@ -28,7 +28,7 @@ public class TipoProdutoController {
 		return resp;
 	}
 
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public Boolean alterarTipoProduto(@ModelAttribute TipoProduto tipoProduto,
 			HttpServletResponse response) {
 

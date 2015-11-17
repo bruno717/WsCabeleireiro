@@ -27,7 +27,7 @@ public class TipoContaController {
 		return resp;
 	}
 
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public Boolean alterarTipoConta(@ModelAttribute TipoConta tipoConta,
 			HttpServletResponse response) {
 

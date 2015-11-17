@@ -28,7 +28,7 @@ public class FuncionarioController {
 		return resp;
 	}
 
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public FuncionarioDTO alterarFuncionario(
 			@ModelAttribute FuncionarioDTO dto, HttpServletResponse response) {
 

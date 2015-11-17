@@ -44,7 +44,7 @@ public class ClienteController {
 		return true;
 	}
 
-	@RequestMapping(value = "alterar", method = RequestMethod.PUT)
+	@RequestMapping(value = "alterar", method = RequestMethod.POST)
 	public ClienteDTO alterarCliente(@ModelAttribute ClienteDTO dto,
 			HttpServletResponse response) {
 

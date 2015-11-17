@@ -13,7 +13,7 @@ import br.com.salaodebeleza.dao.UsuarioDAO;
 @RequestMapping(value = "usuario")
 public class UsuarioController {
 	
-	@RequestMapping(value = "inativar", method = RequestMethod.PUT)
+	@RequestMapping(value = "inativar", method = RequestMethod.POST)
 	public Boolean inativarUsuario(@RequestParam Integer id, HttpServletResponse response){
 		
 		Boolean resp = new UsuarioDAO().inativarUsuario(id);

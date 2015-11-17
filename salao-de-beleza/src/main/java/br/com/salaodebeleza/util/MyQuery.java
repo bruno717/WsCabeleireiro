@@ -48,7 +48,6 @@ public class MyQuery {
 	public static final String INSERT_PRODUTOS_COMPRADOS = "INSERT INTO tb_produtos_comprados (id_compra, id_produto, id_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_PRODUTOS_COMPRADOS = "UPDATE tb_produtos_comprados SET cd_status=? WHERE id_compra=?";
 	public static final String SELECT_QUANTIDADE_PRODUTOS_COMPRADOS = "SELECT * FROM tb_produtos_comprados WHERE id_compra=?";
-	
 
 	public static final String SELECT_COMPRAS = "SELECT * FROM tb_compras";
 
@@ -62,7 +61,7 @@ public class MyQuery {
 	public static final String UPDATE_TIPO_CONTA = "UPDATE tb_tipos_contas SET ds_tipo_conta=? WHERE id_tipo_conta=?";
 	public static final String SELECT_TIPO_CONTAS = "SELECT * FROM tb_tipos_contas ORDER BY ds_tipo_conta";
 	public static final String SELECT_TIPO_CONTA = "SELECT * FROM tb_tipos_contas WHERE id_tipo_conta=?";
-	
+
 	// Conta Pagar
 	public static final String INSERT_CONTA_PAGAR = "INSERT INTO tb_contas_pagar (id_pedido, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_pagamento, qt_desconto, qt_juros, vl_total_conta, vl_total_pago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -71,17 +70,35 @@ public class MyQuery {
 	public static final String SELECT_VENDAS = "SELECT * FROM tb_vendas";
 	public static final String UPDATE_STATUS_VENDA = "UPDATE tb_vendas SET cd_status=? WHERE id_venda=?";
 	public static final String SELECT_VENDA = "SELECT * FROM tb_vendas WHERE id_venda = ?";
-	
+
 	public static final String INSERT_PRODUTOS_VENDIDOS = "INSERT INTO tb_produtos_vendidos (id_venda, id_produto, id_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
 	public static final String UPDATE_STATUS_PRODUTOS_VENDIDOS = "UPDATE tb_produtos_vendidos SET cd_status=? WHERE id_venda=?";
-	
-	//Conta Receber
+
+	// Conta Receber
 	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_receber (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-	//Tipo Horario
+	// Tipo Horario
 	public static final String INSERT_TIPO_HORARIO = "INSERT INTO tb_tipos_horarios (ds_tipo_horario, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
 	public static final String UPDATE_TIPO_HORARIO = "UPDATE tb_tipos_horarios SET ds_tipo_horario=? WHERE id_tipo_horario = ?";
 	public static final String SELECT_TIPO_HORARIO = "SELECT * FROM tb_tipos_horarios WHERE id_tipo_horario = ?";
 	public static final String SELECT_TIPOS_HORARIOS = "SELECT * FROM tb_tipos_horarios WHERE cd_status = 1 ORDER BY ds_tipo_horario";
 
+	// Tipo Servico
+	public static final String INSERT_TIPO_SERVICO = "INSERT INTO tb_tipos_servicos (ds_tipo_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
+	public static final String UPDATE_TIPO_SERVICO = "UPDATE tb_tipos_servicos SET ds_tipo_servico=? WHERE id_tipo_servico = ?";
+	public static final String SELECT_TIPO_SERVICO = "SELECT * FROM tb_tipos_servicos WHERE id_tipo_servico = ?";
+	public static final String SELECT_TIPOS_SERVICOS = "SELECT * FROM tb_tipos_servicos WHERE cd_status = 1 ORDER BY ds_tipo_servico";
+
+	// Servico
+	public static final String INSERT_SERVICO = "INSERT INTO tb_servicos (id_tipo_servico, ds_servico, vl_preco, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_SERVICO = "UPDATE tb_servicos SET id_tipo_servico=?, ds_servico=?, vl_preco=? WHERE id_servico = ?";
+	public static final String SELECT_SERVICO = "SELECT * FROM tb_servicos WHERE id_servico = ?";
+	public static final String SELECT_SERVICOS = "SELECT * FROM tb_servicos WHERE cd_status = 1 ORDER BY ds_servico";
+	public static final String SELECT_SERVICOS_POR_TIPO_SERVICO = "SELECT * FROM tb_servicos WHERE cd_status = 1 AND id_tipo_servico= ? ORDER BY ds_servico";
+	
+	
+	
+	
+	
+	
 }
