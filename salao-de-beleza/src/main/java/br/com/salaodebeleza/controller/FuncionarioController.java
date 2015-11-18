@@ -54,5 +54,13 @@ public class FuncionarioController {
 
 		return funcionarios;
 	}
+	
+	@RequestMapping(value = "lista_funcionarios_disponiveis", method = RequestMethod.GET)
+	public List<FuncionarioDTO> getListaFuncionariosDisponiveis(@RequestParam String data, @RequestParam String horaInicio, @RequestParam String horaFim ) {
+		
+		List<FuncionarioDTO> funcionarios = new FuncionarioDAO().buscarFuncionarioDisponivel(data, horaInicio, horaFim);
+
+		return funcionarios;
+	}
 
 }

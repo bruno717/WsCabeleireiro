@@ -5,7 +5,7 @@ public class ServicoFuncionario {
 	private Integer id;
 	private Integer idUsuario;
 	private Integer idServico;
-	private String tempo;
+	private Integer idHorario;
 
 	public Integer getId() {
 		return id;
@@ -31,12 +31,12 @@ public class ServicoFuncionario {
 		this.idServico = idServico;
 	}
 
-	public String getIdHorario() {
-		return tempo;
+	public Integer getIdHorario() {
+		return idHorario;
 	}
 
-	public void setIdHorario(String tempo) {
-		this.tempo = tempo;
+	public void setIdHorario(Integer idHorario) {
+		this.idHorario = idHorario;
 	}
 
 }

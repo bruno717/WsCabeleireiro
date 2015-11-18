@@ -6,4 +6,6 @@ public class StatusUsuario {
 	public static final Integer USUARIO_CADASTRADO = 5;
 	public static final Integer USUARIO_JA_EXISTE = 6;
 	public static final Integer USUARIO_ALTERADO = 7;
+	public static final Integer HORARIO_DISPONIVEL = 8;
+	public static final Integer HORARIO_INDISPONIVEL = 9;
 }

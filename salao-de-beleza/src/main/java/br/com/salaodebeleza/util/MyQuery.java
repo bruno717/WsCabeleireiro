@@ -64,7 +64,9 @@ public class MyQuery {
 
 	// Conta Pagar
 	public static final String INSERT_CONTA_PAGAR = "INSERT INTO tb_contas_pagar (id_pedido, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_pagamento, qt_desconto, qt_juros, vl_total_conta, vl_total_pago) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+	public static final String SELECT_CONTAS_PAGAR_POR_DATA_DIA = "SELECT * FROM tb_contas_pagar WHERE dt_pagamento = ?";
+	public static final String SELECT_CONTAS_PAGAR_POR_DATA_PERIODO = "SELECT * FROM tb_contas_pagar WHERE dt_pagamento >= ? AND dt_pagamento <= ?";
+	
 	// Venda
 	public static final String INSERT_VENDA = "INSERT INTO tb_vendas (id_usuario, id_tipo_recebimento, id_usuario_cadastro, cd_status, dt_operacao) VALUES (?, ?, ?, ?, ?)";
 	public static final String SELECT_VENDAS = "SELECT * FROM tb_vendas";
@@ -76,12 +78,22 @@ public class MyQuery {
 
 	// Conta Receber
 	public static final String INSERT_CONTA_RECEBER = "INSERT INTO tb_contas_receber (id_venda, id_tipo_conta, nr_parcelas, nr_parcela_atual, dt_vencimento, dt_recebimento, qt_desconto, qt_juros, vl_total_conta, vl_total_recebido) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	public static final String SELECT_CONTAS_RECEBER_POR_DATA_DIA = "SELECT * FROM tb_contas_receber WHERE dt_recebimento = ?";
+	public static final String SELECT_CONTAS_RECEBER_POR_DATA_PERIODO = "SELECT * FROM tb_contas_receber WHERE dt_recebimento >= ? AND dt_recebimento <= ?";
 
 	// Tipo Horario
 	public static final String INSERT_TIPO_HORARIO = "INSERT INTO tb_tipos_horarios (ds_tipo_horario, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
 	public static final String UPDATE_TIPO_HORARIO = "UPDATE tb_tipos_horarios SET ds_tipo_horario=? WHERE id_tipo_horario = ?";
 	public static final String SELECT_TIPO_HORARIO = "SELECT * FROM tb_tipos_horarios WHERE id_tipo_horario = ?";
 	public static final String SELECT_TIPOS_HORARIOS = "SELECT * FROM tb_tipos_horarios WHERE cd_status = 1 ORDER BY ds_tipo_horario";
+
+	// Tipo Horario
+	public static final String INSERT_HORARIO = "INSERT INTO tb_horarios (id_tipo_horario, ds_horario, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?)";
+	public static final String UPDATE_HORARIO = "UPDATE tb_horarios SET id_tipo_horario=?, ds_horario=? WHERE id_horario = ?";
+	public static final String SELECT_HORARIO = "SELECT * FROM tb_horarios WHERE id_horario = ?";
+	public static final String SELECT_HORARIOS = "SELECT * FROM tb_horarios WHERE cd_status = 1 ORDER BY ds_horario";
+	public static final String SELECT_HORARIOS_POR_TIPO_HORARIO = "SELECT * FROM tb_horarios WHERE cd_status = 1 AND id_tipo_horario = ? ORDER BY ds_horario";
+	public static final String SELECT_HORARIOS_DISPONIVEIS = "call verifica_agenda(?, ?, ?, ?, @response_status)";
 
 	// Tipo Servico
 	public static final String INSERT_TIPO_SERVICO = "INSERT INTO tb_tipos_servicos (ds_tipo_servico, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?)";
@@ -95,10 +107,19 @@ public class MyQuery {
 	public static final String SELECT_SERVICO = "SELECT * FROM tb_servicos WHERE id_servico = ?";
 	public static final String SELECT_SERVICOS = "SELECT * FROM tb_servicos WHERE cd_status = 1 ORDER BY ds_servico";
 	public static final String SELECT_SERVICOS_POR_TIPO_SERVICO = "SELECT * FROM tb_servicos WHERE cd_status = 1 AND id_tipo_servico= ? ORDER BY ds_servico";
-	
-	
-	
-	
-	
-	
+
+	// Atividade (Servico Funcionario)
+	public static final String INSERT_ATIVIDADE = "INSERT INTO tb_atividades (id_usuario, id_servico, id_horario, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_ATIVIDADE = "UPDATE tb_atividades SET id_usuario=?, id_servico=?, id_horario=? WHERE id_atividade = ?";
+	public static final String SELECT_ATIVIDADE = "SELECT * FROM tb_atividades WHERE id_atividade = ?";
+	public static final String SELECT_ATIVIDADES = "SELECT * FROM tb_atividades WHERE cd_status = 1";
+	// public static final String SELECT_SERVICOS_POR_TIPO_SERVICO =
+	// "SELECT * FROM tb_servicos WHERE cd_status = 1 AND id_tipo_servico= ? ORDER BY ds_servico";
+
+	// Atividade (Servico Funcionario)
+	public static final String INSERT_AGENDA = "INSERT INTO tb_agenda (id_horario, id_usuario, id_atividade, dt_reserva, cd_status, dt_operacao, id_usuario_cadastro) VALUES (?, ?, ?, ?, ?, ?, ?)";
+	public static final String UPDATE_AGENDA = "UPDATE tb_agenda SET id_horario=?, id_usuario=?, id_atividade=?, dt_reserva=? WHERE id_agenda = ?";
+	public static final String SELECT_AGENDA = "SELECT * FROM tb_agenda WHERE id_agenda = ?";
+	public static final String SELECT_AGENDAS = "SELECT * FROM tb_agenda WHERE cd_status = 1";
+
 }

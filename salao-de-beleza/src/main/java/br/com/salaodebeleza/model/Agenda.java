@@ -6,7 +6,7 @@ public class Agenda {
 	private Integer idHoraio;
 	private Integer idUsuario;
 	private Integer idAtividade;
-	private String dsReserva;
+	private String dtReserva;
 
 	public Integer getId() {
 		return id;
@@ -40,12 +40,12 @@ public class Agenda {
 		this.idAtividade = idAtividade;
 	}
 
-	public String getDsReserva() {
-		return dsReserva;
+	public String getDtReserva() {
+		return dtReserva;
 	}
 
-	public void setDsReserva(String dsReserva) {
-		this.dsReserva = dsReserva;
+	public void setDtReserva(String dtReserva) {
+		this.dtReserva = dtReserva;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.salaodebeleza.dto.FuncionarioDTO;
+import br.com.salaodebeleza.util.FormatDateString;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusUsuario;
 import br.com.salaodebeleza.util.TipoUsuario;
@@ -34,7 +35,8 @@ public class FuncionarioDAO {
 			ps.setInt(7, TipoUsuario.ADM);
 			ps.setString(8, funcionario.getTelefone2());
 			ps.setDate(9, new Date(funcionario.getDtNascimento().getTime()));
-			ps.setLong(10, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
+			ps.setLong(10,
+					funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(11, funcionario.getSexo());
 			ps.setLong(12, 0L);
 			ps.setInt(13, 0);
@@ -58,6 +60,8 @@ public class FuncionarioDAO {
 				resp = rs.getString("resp").equals(
 						StatusUsuario.USUARIO_CADASTRADO.toString());
 			}
+			
+			rs.close();
 			ps.close();
 			con.close();
 		} catch (Exception e) {
@@ -83,7 +87,8 @@ public class FuncionarioDAO {
 			ps.setString(4, funcionario.getSenha());
 			ps.setString(5, funcionario.getTelefone2());
 			ps.setDate(6, new Date(funcionario.getDtNascimento().getTime()));
-			ps.setLong(7, funcionario.getCpf() == null ? 0 : funcionario.getCpf());
+			ps.setLong(7,
+					funcionario.getCpf() == null ? 0 : funcionario.getCpf());
 			ps.setString(8, funcionario.getSexo());
 			ps.setString(9, funcionario.getCep());
 			ps.setString(10, funcionario.getLogradouro());
@@ -196,6 +201,49 @@ public class FuncionarioDAO {
 		}
 		return dtos;
 
+	}
+
+	public List<FuncionarioDTO> buscarFuncionarioDisponivel(String data, String horaInicio, String horaFim) {
+
+		Boolean resp = false;
+		String sql;
+		data = FormatDateString.formataDataBanco(FormatDateString.RetiraCaracteres(data));
+		List<FuncionarioDTO> lista = buscarFuncionarios();
+		List<FuncionarioDTO> listaDisponiveis = new ArrayList<FuncionarioDTO>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			try {
+				Connection con = Connect.getConexao();
+				sql = MyQuery.SELECT_HORARIOS_DISPONIVEIS;
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, data);
+				ps.setString(2, horaInicio);
+				ps.setString(3, horaFim);
+				ps.setInt(4, lista.get(i).getId());
+				ps.execute();
+
+				sql = MyQuery.SELECT_RESPONSE_STATUS;
+				Statement stmt = con.createStatement();
+				ResultSet rs = stmt.executeQuery(sql);
+
+				if (rs.next()) {
+					resp = rs.getString("resp").equals(
+							StatusUsuario.HORARIO_DISPONIVEL.toString());
+				}
+
+				if(resp){
+					listaDisponiveis.add(lista.get(i));
+				}
+
+				rs.close();
+				ps.close();
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return listaDisponiveis;
 	}
 
 }

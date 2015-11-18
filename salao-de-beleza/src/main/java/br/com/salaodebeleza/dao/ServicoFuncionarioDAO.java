@@ -1,4 +1,4 @@
-/*package br.com.salaodebeleza.dao;
+package br.com.salaodebeleza.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,26 +8,27 @@ import java.util.Date;
 import java.util.List;
 
 import br.com.salaodebeleza.model.ServicoFuncionario;
-import br.com.salaodebeleza.model.TipoHorario;
 import br.com.salaodebeleza.util.MyQuery;
 import br.com.salaodebeleza.util.StatusUsuario;
 import br.com.salaodebeleza.util.TipoUsuario;
 
 public class ServicoFuncionarioDAO {
 
-	public Boolean criarTipoHorario(ServicoFuncionario servicoFuncioanrio) {
+	public Boolean criarServicoFuncionario(ServicoFuncionario servicoFuncionario) {
 
 		Boolean resp = false;
 		String sql;
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.INSERT_TIPO_HORARIO;
+			sql = MyQuery.INSERT_ATIVIDADE;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, servicoFuncioanrio.get);
-			ps.setInt(2, StatusUsuario.USUARIO_ATIVO);
-			ps.setDate(3, new java.sql.Date(new Date().getTime()));
-			ps.setInt(4, TipoUsuario.ADM);
+			ps.setInt(1, servicoFuncionario.getIdUsuario());
+			ps.setInt(2, servicoFuncionario.getIdServico());
+			ps.setInt(3, servicoFuncionario.getIdHorario());
+			ps.setInt(4, StatusUsuario.USUARIO_ATIVO);
+			ps.setDate(5, new java.sql.Date(new Date().getTime()));
+			ps.setInt(6, TipoUsuario.ADM);
 			ps.execute();
 
 			ps.close();
@@ -39,17 +40,19 @@ public class ServicoFuncionarioDAO {
 		return resp;
 	}
 
-	public Boolean alterarTipoHorario(TipoHorario tipoHorario) {
+	public Boolean alterarServicoFuncionario(ServicoFuncionario servicoFuncionario) {
 
 		Boolean resp = false;
 		String sql;
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.UPDATE_TIPO_HORARIO;
+			sql = MyQuery.UPDATE_ATIVIDADE;
 			PreparedStatement ps = con.prepareStatement(sql);
 
-			ps.setString(1, tipoHorario.getDsTipoHorario());
-			ps.setInt(2, tipoHorario.getId());
+			ps.setInt(1, servicoFuncionario.getIdUsuario());
+			ps.setInt(2, servicoFuncionario.getIdServico());
+			ps.setInt(3, servicoFuncionario.getIdHorario());
+			ps.setInt(4, servicoFuncionario.getId());
 			ps.execute();
 
 			ps.close();
@@ -61,22 +64,24 @@ public class ServicoFuncionarioDAO {
 		return resp;
 	}
 
-	public TipoHorario buscarTipoHorario(Integer id) {
+	public ServicoFuncionario buscarServicoFuncionario(Integer id) {
 
 		String sql;
-		TipoHorario tipoHorario = null;
+		ServicoFuncionario servicoFuncionario = null;
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_TIPO_HORARIO;
+			sql = MyQuery.SELECT_ATIVIDADE;
 			PreparedStatement ps = con.prepareStatement(sql);
 
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 
 			if (rs.next()) {
-				tipoHorario = new TipoHorario();
-				tipoHorario.setId(rs.getInt("id_tipo_horario"));
-				tipoHorario.setDsTipoHorario(rs.getString("ds_tipo_horario"));
+				servicoFuncionario = new ServicoFuncionario();
+				servicoFuncionario.setId(rs.getInt("id_atividade"));
+				servicoFuncionario.setIdUsuario(rs.getInt("id_usuario"));
+				servicoFuncionario.setIdServico(rs.getInt("id_servico"));
+				servicoFuncionario.setIdHorario(rs.getInt("id_horario"));
 			}
 
 			rs.close();
@@ -85,26 +90,28 @@ public class ServicoFuncionarioDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return tipoHorario;
+		return servicoFuncionario;
 	}
 
-	public List<TipoHorario> buscarTipoHorarios() {
+	public List<ServicoFuncionario> buscarServicoFuncionarios() {
 
 		String sql;
-		List<TipoHorario> lista = new ArrayList<TipoHorario>();
+		List<ServicoFuncionario> lista = new ArrayList<ServicoFuncionario>();
 		try {
 			Connection con = Connect.getConexao();
-			sql = MyQuery.SELECT_TIPOS_HORARIOS;
+			sql = MyQuery.SELECT_ATIVIDADES;
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				TipoHorario tipoHorario = new TipoHorario();
+				ServicoFuncionario servicoFuncionario = new ServicoFuncionario();
 
-				tipoHorario.setId(rs.getInt("id_tipo_horario"));
-				tipoHorario.setDsTipoHorario(rs.getString("ds_tipo_horario"));
+				servicoFuncionario.setId(rs.getInt("id_atividade"));
+				servicoFuncionario.setIdUsuario(rs.getInt("id_usuario"));
+				servicoFuncionario.setIdServico(rs.getInt("id_servico"));
+				servicoFuncionario.setIdHorario(rs.getInt("id_horario"));
 
-				lista.add(tipoHorario);
+				lista.add(servicoFuncionario);
 			}
 
 			rs.close();
@@ -118,4 +125,3 @@ public class ServicoFuncionarioDAO {
 	}
 
 }
-*/
