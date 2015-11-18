@@ -9,6 +9,7 @@ import java.util.List;
 
 import br.com.salaodebeleza.model.Produto;
 import br.com.salaodebeleza.util.MyQuery;
+import br.com.salaodebeleza.util.StatusCompraPedido;
 import br.com.salaodebeleza.util.StatusUsuario;
 import br.com.salaodebeleza.util.TipoUsuario;
 
@@ -156,5 +157,59 @@ public class ProdutoDAO {
 		}
 		return lista.get(lista.size() - 1);
 	}
+	
+	public Produto buscarProdutosMaisVendido() {
+
+		String sql;
+		Produto produto = null;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.SELECT_PRODUTO_MAIS_VENDIDO;
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				produto = new Produto();
+				produto.setId(rs.getInt("id_produto"));
+			}
+			
+			if(produto!= null)
+				produto = buscarProduto(produto.getId());
+
+			rs.close();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return produto;
+	}
+	
+	public Integer buscarProdutosMaisVendidosQtd(Integer idProduto) {
+
+		String sql;
+		Integer resp = 0;
+		try {
+			Connection con = Connect.getConexao();
+			sql = MyQuery.SELECT_PRODUTOS_MAIS_VENDIDO_LISTA;
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, StatusCompraPedido.FINALIZADO);
+			ps.setInt(2, idProduto);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				resp++;
+			}
+
+			rs.close();
+			ps.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return resp;
+	} 
 
 }

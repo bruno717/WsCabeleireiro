@@ -32,6 +32,8 @@ public class MyQuery {
 	public static final String UPDATE_PRODUTO = "UPDATE tb_produtos SET id_tipo_produto=?, ds_produto=?, ds_fabricante=?, vl_preco=? WHERE id_produto = ?";
 	public static final String SELECT_PRODUTO = "SELECT * FROM tb_produtos WHERE id_produto = ?";
 	public static final String SELECT_PRODUTOS = "SELECT * FROM tb_produtos WHERE cd_status = 1 ORDER BY ds_produto";
+	public static final String SELECT_PRODUTOS_MAIS_VENDIDO_LISTA = "SELECT * FROM tb_produtos_vendidos WHERE cd_status = ? AND id_produto = ?";
+	public static final String SELECT_PRODUTO_MAIS_VENDIDO = "SELECT COUNT(*) AS qtd, id_produto FROM tb_produtos_vendidos GROUP BY id_produto ORDER BY qtd DESC";
 
 	// Estoque
 	public static final String INSERT_PRODUTO_ESTOQUE = "INSERT INTO tb_estoque (id_produto, qt_produto) VALUES (?, ?)";
